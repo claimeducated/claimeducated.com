@@ -1,1 +1,28 @@
+<svg width="240" height="240" viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="240" height="240" rx="56" fill="#12263F"/>
+<path d="M63 73C63 65.268 69.268 59 77 59H163C170.732 59 177 65.268 177 73V167C177 174.732 170.732 181 163 181H77C69.268 181 63 174.732 63 167V73Z" fill="#FAF8F5"/>
+<path d="M88 91H152" stroke="#12263F" stroke-width="10" stroke-linecap="round"/>
+<path d="M88 120H152" stroke="#B8924C" stroke-width="10" stroke-linecap="round"/>
+<path d="M88 149H130" stroke="#12263F" stroke-width="10" stroke-linecap="round"/>
+</svg>
 
+<svg width="240" height="240" viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="240" height="240" rx="56" fill="#12263F"/>
+<path d="M63 73C63 65.268 69.268 59 77 59H163C170.732 59 177 65.268 177 73V167C177 174.732 170.732 181 163 181H77C69.268 181 63 174.732 63 167V73Z" fill="#FAF8F5"/>
+<path d="M88 91H152" stroke="#12263F" stroke-width="10" stroke-linecap="round"/>
+<path d="M88 120H152" stroke="#B8924C" stroke-width="10" stroke-linecap="round"/>
+<path d="M88 149H130" stroke="#12263F" stroke-width="10" stroke-linecap="round"/>
+</svg>
+
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="1200" height="630" fill="#FAF8F5"/>
+<rect x="48" y="48" width="1104" height="534" rx="42" fill="#12263F"/>
+<circle cx="1014" cy="136" r="190" fill="#B8924C" fill-opacity=".22"/>
+<rect x="104" y="118" width="92" height="92" rx="24" fill="#FAF8F5"/>
+<path d="M128 145H172" stroke="#12263F" stroke-width="10" stroke-linecap="round"/>
+<path d="M128 165H172" stroke="#B8924C" stroke-width="10" stroke-linecap="round"/>
+<path d="M128 185H158" stroke="#12263F" stroke-width="10" stroke-linecap="round"/>
+<text x="104" y="292" font-family="Georgia, serif" font-size="82" fill="#FAF8F5">ClaimEducated™</text>
+<text x="104" y="375" font-family="Inter, Arial, sans-serif" font-size="38" fill="#E9DFCF">Insurance claims made simple.</text>
+<text x="104" y="456" font-family="Inter, Arial, sans-serif" font-size="26" fill="#B8924C" font-weight="700" letter-spacing="4">CALM • STRATEGIC • DOCUMENTATION-FIRST</text>
+</svg>
