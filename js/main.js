@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${message}`);
       const sub  = encodeURIComponent(subject);
-      window.location.href = `mailto:claimeducated@gmail.com?subject=${sub}&body=${body}`;
+      window.location.href = `mailto:support@claimeducated.com?subject=${sub}&body=${body}`;
 
       setTimeout(() => {
         btn.textContent = original;
