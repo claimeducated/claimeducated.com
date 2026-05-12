@@ -1,1 +1,37 @@
 
+<svg width="320" height="74" viewBox="0 0 320 74" role="img" xmlns="http://www.w3.org/2000/svg" aria-label="ClaimEducated — Insurance claims made simple">
+  <defs>
+    <style>
+      .f600 { font-family:'DM Sans','Inter',-apple-system,BlinkMacSystemFont,sans-serif; font-weight:600; }
+      .f300 { font-family:'DM Sans','Inter',-apple-system,BlinkMacSystemFont,sans-serif; font-weight:300; }
+    </style>
+  </defs>
+
+  <!-- Icon: left page -->
+  <path d="M34 26 L11 27.6 Q8 27.6 8 30.6 L8 65 Q8 68 11 68 L34 68 Z" fill="#F6F4F0"/>
+  <!-- Icon: right page -->
+  <path d="M42 26 L65 27.6 Q68 27.6 68 30.6 L68 65 Q68 68 65 68 L42 68 Z" fill="#F6F4F0"/>
+  <!-- Spine -->
+  <rect x="34" y="26" width="8" height="42" fill="#B8924C"/>
+  <!-- Page lines left -->
+  <line x1="11" y1="38" x2="31" y2="38" stroke="#12263F" stroke-width="1.2" stroke-linecap="round" opacity="0.25"/>
+  <line x1="11" y1="47" x2="31" y2="47" stroke="#12263F" stroke-width="1.2" stroke-linecap="round" opacity="0.25"/>
+  <line x1="11" y1="56" x2="31" y2="56" stroke="#12263F" stroke-width="1.2" stroke-linecap="round" opacity="0.25"/>
+  <!-- Page lines right -->
+  <line x1="45" y1="38" x2="65" y2="38" stroke="#12263F" stroke-width="1.2" stroke-linecap="round" opacity="0.25"/>
+  <line x1="45" y1="47" x2="65" y2="47" stroke="#12263F" stroke-width="1.2" stroke-linecap="round" opacity="0.25"/>
+  <line x1="45" y1="56" x2="65" y2="56" stroke="#12263F" stroke-width="1.2" stroke-linecap="round" opacity="0.25"/>
+  <!-- Sun arc -->
+  <path d="M16 26 Q38 12 60 26" fill="none" stroke="#B8924C" stroke-width="1.6" stroke-linecap="round"/>
+  <!-- 5 rays -->
+  <line x1="20" y1="17" x2="14" y2="13" stroke="#B8924C" stroke-width="1.3" stroke-linecap="round"/>
+  <line x1="28" y1="10" x2="24" y2="4"  stroke="#B8924C" stroke-width="1.3" stroke-linecap="round"/>
+  <line x1="38" y1="7"  x2="38" y2="1"  stroke="#B8924C" stroke-width="1.3" stroke-linecap="round"/>
+  <line x1="48" y1="10" x2="52" y2="4"  stroke="#B8924C" stroke-width="1.3" stroke-linecap="round"/>
+  <line x1="56" y1="17" x2="62" y2="13" stroke="#B8924C" stroke-width="1.3" stroke-linecap="round"/>
+
+  <!-- Wordmark: white "Claim" + gold "Educated" -->
+  <text x="86" y="44" class="f600" font-size="26" letter-spacing="-0.3" fill="#F6F4F0">Claim<tspan fill="#B8924C">Educated</tspan><tspan font-size="12" dy="-8" fill="#B8924C" font-weight="400" font-family="'DM Sans','Inter',-apple-system,sans-serif">&#x2122;</tspan></text>
+  <!-- Tagline -->
+  <text x="87" y="62" class="f300" font-size="9" letter-spacing="1.4" fill="#7A95AD">INSURANCE CLAIMS MADE SIMPLE</text>
+</svg>
