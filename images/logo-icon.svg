@@ -1,1 +1,32 @@
 
+<svg width="80" height="80" viewBox="0 0 80 80" role="img" xmlns="http://www.w3.org/2000/svg" aria-label="ClaimEducated icon mark">
+
+  <!-- Navy background tile -->
+  <rect width="80" height="80" rx="10" fill="#12263F"/>
+
+  <!-- Left page -->
+  <path d="M37 22 L16 23.6 Q13 23.6 13 26.6 L13 60 Q13 63 16 63 L37 63 Z" fill="#F6F4F0"/>
+  <!-- Right page -->
+  <path d="M43 22 L64 23.6 Q67 23.6 67 26.6 L67 60 Q67 63 64 63 L43 63 Z" fill="#F6F4F0"/>
+  <!-- Spine -->
+  <rect x="37" y="22" width="6" height="41" fill="#B8924C"/>
+
+  <!-- Page lines left -->
+  <line x1="16" y1="34" x2="34" y2="34" stroke="#12263F" stroke-width="1.1" stroke-linecap="round" opacity="0.28"/>
+  <line x1="16" y1="43" x2="34" y2="43" stroke="#12263F" stroke-width="1.1" stroke-linecap="round" opacity="0.28"/>
+  <line x1="16" y1="52" x2="34" y2="52" stroke="#12263F" stroke-width="1.1" stroke-linecap="round" opacity="0.28"/>
+  <!-- Page lines right -->
+  <line x1="46" y1="34" x2="64" y2="34" stroke="#12263F" stroke-width="1.1" stroke-linecap="round" opacity="0.28"/>
+  <line x1="46" y1="43" x2="64" y2="43" stroke="#12263F" stroke-width="1.1" stroke-linecap="round" opacity="0.28"/>
+  <line x1="46" y1="52" x2="64" y2="52" stroke="#12263F" stroke-width="1.1" stroke-linecap="round" opacity="0.28"/>
+
+  <!-- Sun arc -->
+  <path d="M20 22 Q40 8 60 22" fill="none" stroke="#B8924C" stroke-width="1.6" stroke-linecap="round"/>
+  <!-- 5 rays -->
+  <line x1="24" y1="13" x2="18" y2="9"  stroke="#B8924C" stroke-width="1.3" stroke-linecap="round"/>
+  <line x1="32" y1="6"  x2="28" y2="0"  stroke="#B8924C" stroke-width="1.3" stroke-linecap="round"/>
+  <line x1="40" y1="4"  x2="40" y2="-2" stroke="#B8924C" stroke-width="1.3" stroke-linecap="round"/>
+  <line x1="48" y1="6"  x2="52" y2="0"  stroke="#B8924C" stroke-width="1.3" stroke-linecap="round"/>
+  <line x1="56" y1="13" x2="62" y2="9"  stroke="#B8924C" stroke-width="1.3" stroke-linecap="round"/>
+
+</svg>
