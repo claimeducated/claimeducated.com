@@ -222,9 +222,8 @@ p { max-width: 68ch; }
 .nav {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  height: 72px;
-  gap: 2rem;
+  gap: 1.5rem; /* reduce if still tight */
+  flex-wrap: nowrap;
 }
 
 .nav-logo {
