@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
- /* — Contact form (Web3Forms) — */
+ /* — Contact form (Cloudflare Worker) — */
 const contactForm = document.getElementById('contact-form');
 if (contactForm) {
   contactForm.addEventListener('submit', async e => {
@@ -79,10 +79,9 @@ if (contactForm) {
     btn.disabled = true;
 
     const formData = new FormData(contactForm);
-    formData.append('access_key', '73482ce9-02ca-46ec-a7b5-da4a9bf4db33');
 
     try {
-      const response = await fetch('https://api.web3forms.com/submit', {
+      const response = await fetch('https://claimeducated-contact-worker.claimeducated.workers.dev', {
         method: 'POST',
         body: formData
       });
