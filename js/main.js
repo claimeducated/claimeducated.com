@@ -67,34 +67,42 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  /* ── Contact form (Cloudflare Email Forwarding) ────────────── */
-  const contactForm = document.getElementById('contact-form');
-  if (contactForm) {
-    contactForm.addEventListener('submit', e => {
-      e.preventDefault();
-      const btn = contactForm.querySelector('button[type="submit"]');
-      const original = btn.textContent;
-      btn.textContent = 'Sending…';
-      btn.disabled = true;
+ /* — Contact form (Web3Forms) — */
+const contactForm = document.getElementById('contact-form');
+if (contactForm) {
+  contactForm.addEventListener('submit', async e => {
+    e.preventDefault();
 
-      // Build mailto link from form fields
-      const name    = contactForm.querySelector('#name')?.value    || '';
-      const email   = contactForm.querySelector('#email')?.value   || '';
-      const subject = contactForm.querySelector('#subject')?.value || 'ClaimEducated Inquiry';
-      const message = contactForm.querySelector('#message')?.value || '';
+    const btn = contactForm.querySelector('button[type="submit"]');
+    const original = btn.textContent;
+    btn.textContent = 'Sending…';
+    btn.disabled = true;
 
-      const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${message}`);
-      const sub  = encodeURIComponent(subject);
-      window.location.href = `mailto:support@claimeducated.com?subject=${sub}&body=${body}`;
+    const formData = new FormData(contactForm);
+    formData.append('access_key', 'YOUR_WEB3FORMS_KEY_HERE');
 
-      setTimeout(() => {
-        btn.textContent = original;
-        btn.disabled = false;
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: formData
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
         showToast('Message sent! We\'ll be in touch shortly.');
         contactForm.reset();
-      }, 800);
-    });
-  }
+      } else {
+        showToast('Something went wrong. Please try again.');
+      }
+    } catch (err) {
+      showToast('Something went wrong. Please try again.');
+    } finally {
+      btn.textContent = original;
+      btn.disabled = false;
+    }
+  });
+}
 
   /* ── Toast notification ───────────────────────────────────── */
   window.showToast = (msg) => {
