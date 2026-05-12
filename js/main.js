@@ -81,10 +81,13 @@ if (contactForm) {
     const formData = new FormData(contactForm);
 
     try {
-      const response = await fetch('https://claimeducated-contact-worker.claimeducated.workers.dev', {
-        method: 'POST',
-        body: formData
-      });
+      const formData = new FormData(contactForm);
+formData.append('access_key', '73482ce9-02ca-46ec-a7b5-da4a9bf4db33');
+
+const response = await fetch('https://api.web3forms.com/submit', {
+  method: 'POST',
+  body: formData
+});
 
       const data = await response.json();
 
