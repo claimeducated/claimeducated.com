@@ -869,6 +869,13 @@ p { max-width: 68ch; }
   color: var(--text-muted);
 }
 
+.blog-svg-icon {
+  width: 54px;
+  height: 54px;
+  color: var(--gold);
+  opacity: 0.9;
+}
+
 /* ── Page Hero (inner pages) ────────────────────────────────── */
 .page-hero {
   background: var(--navy);
