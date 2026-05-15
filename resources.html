@@ -36,6 +36,7 @@
 <div class="nav-mobile-overlay" id="mobile-nav">
   <span class="nav-mobile-close">&times;</span>
   <a href="index.html">Home</a><a href="about.html">About</a><a href="resources.html">Free Resources</a><a href="shop.html">The Library</a><a href="blog.html">Blog</a><a href="contact.html">Contact</a>
+  <a href="https://calendly.com/claimeducated/free-claim-qa" target="_blank" rel="noopener" class="btn btn-primary mt-4">Free Q&amp;A Call</a>
 </div>
 
 <main id="main-content">
@@ -99,7 +100,7 @@
           <p style="color:rgba(255,255,255,0.68); font-size:0.82rem;">Know what to do immediately after damage happens — before cleanup, repairs, or your first call to insurance.</p>
         </div>
         <div class="card-body">
-          <p style="font-size:0.82rem; color:var(--slate); margin-bottom:1rem;">Subscribe to The Policyholder Brief to unlock this free one-pager.#</p>
+          <p style="font-size:0.82rem; color:var(--slate); margin-bottom:1rem;">Subscribe to The Policyholder Brief to unlock this free one-pager.</p>
 
   <a
      href="https://claimeducated.beehiiv.com/subscribe"
@@ -224,18 +225,6 @@
   </div>
 </section>
 
-<!-- ConvertKit Integration Note (visible in HTML comments only) -->
-<!--
-  CONVERTKIT INTEGRATION INSTRUCTIONS:
-  1. Log into ConvertKit and create a Form for each resource above.
-  2. Each form should deliver the correct PDF/resource via ConvertKit's email automation.
-  3. Replace each <form class="ck-form-placeholder"> block above with ConvertKit's
-     embed code for that specific form.
-  4. ConvertKit embed codes look like:
-     <script async data-uid="XXXXXXX" src="https://YOURNAME.ck.page/XXXXXXX/index.js"></script>
-  5. You can also use ConvertKit's inline form HTML embed option for more styling control.
--->
-
 <!-- Want More? -->
 <section class="cta-banner">
   <div class="container">
@@ -243,8 +232,8 @@
       <span class="eyebrow" style="color:var(--gold-light);">Ready to go deeper?</span>
       <div class="divider-gold" style="margin:1rem auto;"></div>
       <h2>Explore the full ClaimEducated™ Library</h2>
-      <p class="mx-auto" style="max-width:50ch;">Get the premium ebook, fillable template packs, and published book — built for policyholders who want to be truly prepared.</p>
-      <a href="shop.html" class="btn btn-primary btn-lg">Browse The Library</a>
+      <p class="mx-auto" style="max-width:50ch;">Get the premium ebook, ClaimEducated™ Toolkit System, and published book — built for policyholders who want to be truly prepared.</p>
+      <a href="shop.html#toolkit" class="btn btn-primary btn-lg">Explore the Toolkit System</a>
     </div>
   </div>
 </section>
@@ -265,7 +254,24 @@
       </div>
       <div><p class="footer-heading">Navigate</p><ul class="footer-links"><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="resources.html">Free Resources</a></li><li><a href="shop.html#toolkit">Toolkit System</a></li><li><a href="blog.html">Blog</a></li><li><a href="contact.html">Contact</a></li></ul></div>
       <div><p class="footer-heading">Resources</p><ul class="footer-links"><li><a href="resources.html">Free Checklists</a></li><li><a href="shop.html">Premium Ebook</a></li><li><a href="shop.html#toolkit">Template Modules</a></li><li><a href="https://www.amazon.com/dp/9798245173009" target="_blank" rel="noopener">Buy the Book</a></li><li><a href="https://calendly.com/claimeducated/claim-qa" target="_blank" rel="noopener">Free Q&amp;A Call</a></li></ul></div>
-      <div><p class="footer-heading">Stay in the Loop</p><p style="font-size:0.85rem; margin-bottom:0.75rem;">Free claim tips — straight to your inbox.</p><form id="newsletter-form" class="newsletter-form"><input type="email" placeholder="Your email address" required aria-label="Email" /><button type="submit">Join</button></form></div>
+      <div>
+  <p class="footer-heading">Stay in the Loop</p>
+  <p style="font-size:0.85rem; margin-bottom:1rem;">
+    Free claim tips, policy insights, and new resources — straight to your inbox.
+  </p>
+
+  <div class="beehiiv-embed">
+    <script
+      async
+      src="https://subscribe-forms.beehiiv.com/v3/loader.js"
+      data-beehiiv-form="7eea2ba2-a231-4841-adf8-0932ccdccb03">
+    </script>
+  </div>
+
+  <p style="font-size:0.72rem; color:rgba(255,255,255,0.45); margin-top:0.6rem;">
+    No spam. Unsubscribe anytime.
+  </p>
+</div>
     </div>
     <div class="footer-bottom">
       <p>&copy; <span id="footer-year"></span> ClaimEducated™. All rights reserved.</p>
@@ -278,16 +284,6 @@
 <script>
   document.getElementById('footer-year').textContent = new Date().getFullYear();
 
-  // Placeholder form handling — remove once ConvertKit embeds are live
-  document.querySelectorAll('.ck-form-placeholder').forEach(form => {
-    form.addEventListener('submit', e => {
-      e.preventDefault();
-      const resource = form.dataset.resource;
-      window.showToast('Thanks! Check your inbox for your free download.');
-      form.reset();
-      // TODO: Replace this with actual ConvertKit form embeds
-    });
-  });
 </script>
 </body>
 </html>
