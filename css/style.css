@@ -1240,6 +1240,29 @@ p { max-width: 68ch; }
   justify-content: center;
 }
 
+/* FINAL Beehiiv Blog CTA Center Fix */
+
+.cta-banner-content {
+  text-align: center !important;
+}
+
+.cta-banner-content .beehiiv-embed {
+  width: 100% !important;
+  max-width: 520px !important;
+  margin: 2rem auto 0 auto !important;
+  display: block !important;
+  text-align: center !important;
+}
+
+.cta-banner-content .beehiiv-embed iframe {
+  width: 520px !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  display: block !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
 /* ── Responsive ────────────────────────────────────────────── */
 @media (max-width: 1024px) {
   .footer-grid { grid-template-columns: 1fr 1fr; }
