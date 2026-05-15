@@ -898,6 +898,27 @@ p { max-width: 68ch; }
   color: var(--text-muted);
 }
 
+.featured-blog-image {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(
+    135deg,
+    #17305c 0%,
+    #27457d 100%
+  );
+}
+
+.featured-blog-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.92;
+}
+
 /* ── Page Hero (inner pages) ────────────────────────────────── */
 .page-hero {
   background: var(--navy);
