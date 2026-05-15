@@ -522,7 +522,7 @@ p { max-width: 68ch; }
   box-shadow: var(--shadow-md);
 }
 
-.card-body { padding: 2rem; }
+.card-body { padding: 2.25rem; }
 /* ── Free Resources Cards ─────────────────────────────────── */
 
 #checklists .grid-3 {
