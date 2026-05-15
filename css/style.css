@@ -535,7 +535,8 @@ p { max-width: 68ch; }
   flex-direction: column;
 }
 
-#checklists .card > div:first-child {
+#checklists .resource-card-top {
+  height: 345px;
   min-height: 345px;
   display: flex;
   flex-direction: column;
