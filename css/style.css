@@ -1195,72 +1195,25 @@ p { max-width: 68ch; }
   margin: 2rem 0;
 }
 
-/* ===== Beehiiv Embed Center Fix ===== */
+/* ===== Beehiiv Newsletter CTA Center Fix ===== */
 
-.beehiiv-embed {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.beehiiv-embed iframe {
-  width: 100% !important;
-  max-width: 520px !important;
-  margin: 0 auto !important;
-  border-radius: 14px;
-}
-
-/* Blog CTA spacing */
-.cta-banner .beehiiv-embed {
-  margin-top: 2rem;
-}
-
-/* ===== Beehiiv Center Alignment ===== */
-
-.beehiiv-embed {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 2rem;
-}
-
-.beehiiv-embed iframe,
-.beehiiv-embed div {
-  margin: 0 auto !important;
-}
-
-.cta-banner-content {
-  text-align: center;
-}
-
-.cta-banner-content .beehiiv-embed {
-  display: flex;
-  justify-content: center;
-}
-
-/* FINAL Beehiiv Blog CTA Center Fix */
-
-.cta-banner-content {
+.cta-banner .cta-banner-content {
   text-align: center !important;
 }
 
-.cta-banner-content .beehiiv-embed {
-  width: 100% !important;
-  max-width: 520px !important;
-  margin: 2rem auto 0 auto !important;
-  display: block !important;
-  text-align: center !important;
-}
-
-.cta-banner-content .beehiiv-embed iframe {
+.cta-banner .cta-banner-content > .beehiiv-embed {
   width: 520px !important;
   max-width: 100% !important;
-  min-width: 0 !important;
+  margin: 2rem auto 0 auto !important;
   display: block !important;
-  margin-left: auto !important;
-  margin-right: auto !important;
+}
+
+.cta-banner .cta-banner-content > .beehiiv-embed iframe {
+  width: 520px !important;
+  max-width: 100% !important;
+  display: block !important;
+  margin: 0 auto !important;
+  border-radius: 14px;
 }
 
 /* ── Responsive ────────────────────────────────────────────── */
