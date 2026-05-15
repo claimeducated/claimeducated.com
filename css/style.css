@@ -1199,27 +1199,6 @@ p { max-width: 68ch; }
   margin: 2rem 0;
 }
 
-/* ===== Beehiiv Newsletter CTA Center Fix ===== */
-
-.cta-banner .cta-banner-content {
-  text-align: center !important;
-}
-
-.cta-banner .cta-banner-content > .beehiiv-embed {
-  width: 520px !important;
-  max-width: 100% !important;
-  margin: 2rem auto 0 auto !important;
-  display: block !important;
-}
-
-.cta-banner .cta-banner-content > .beehiiv-embed iframe {
-  width: 520px !important;
-  max-width: 100% !important;
-  display: block !important;
-  margin: 0 auto !important;
-  border-radius: 14px;
-}
-
 /* ── Responsive ────────────────────────────────────────────── */
 @media (max-width: 1024px) {
   .footer-grid { grid-template-columns: 1fr 1fr; }
@@ -1252,50 +1231,25 @@ p { max-width: 68ch; }
   .page-hero    { padding: 7rem 0 3.5rem; }
 }
 
-/* ===== Blog Newsletter CTA Precise Centering ===== */
+/* ===== Blog Newsletter CTA Beehiiv Center Fix ===== */
 
 .newsletter-cta-form {
-  width: 100%;
-  max-width: 420px;
-  margin: 2rem auto 0 auto;
-  display: flex;
-  justify-content: center;
-}
-
-.newsletter-cta-form .beehiiv-embed {
   width: 100% !important;
-  max-width: 420px !important;
-  margin: 0 auto !important;
+  max-width: 430px !important;
+  margin: 2rem auto 0 auto !important;
   display: block !important;
+  text-align: center !important;
 }
 
-.newsletter-cta-form .beehiiv-embed iframe {
-  width: 420px !important;
+.newsletter-cta-form iframe,
+.newsletter-cta-form div,
+.newsletter-cta-form form {
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.newsletter-cta-form iframe {
+  width: 430px !important;
   max-width: 100% !important;
-  margin: 0 auto !important;
   display: block !important;
-}
-
-/* Blog Newsletter CTA */
-.newsletter-cta-form {
-  width: 100%;
-  max-width: 420px;
-  margin: 2rem auto 0 auto;
-  display: flex;
-  justify-content: center;
-}
-
-.newsletter-cta-form .beehiiv-embed {
-  width: 100% !important;
-  max-width: 420px !important;
-  margin: 0 auto !important;
-  display: block !important;
-}
-
-.newsletter-cta-form .beehiiv-embed iframe {
-  width: 420px !important;
-  max-width: 100% !important;
-  margin: 0 auto !important;
-  display: block !important;
-  border-radius: 14px;
 }
