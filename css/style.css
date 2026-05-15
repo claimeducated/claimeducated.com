@@ -536,7 +536,9 @@ p { max-width: 68ch; }
 }
 
 #checklists .card > div:first-child {
-  min-height: 260px;
+  min-height: 355px;
+  display: flex;
+  flex-direction: column;
 }
 
 #checklists .card-body {
