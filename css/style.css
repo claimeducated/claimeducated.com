@@ -856,7 +856,12 @@ p { max-width: 68ch; }
 .blog-card h3 a { color: var(--navy); transition: color 0.2s; }
 .blog-card h3 a:hover { color: var(--gold); }
 
-.blog-card p { font-size: 0.9rem; color: var(--slate); line-height: 1.65; flex: 1; }
+.blog-card p {
+  font-size: 0.9rem;
+  color: var(--text-muted, #5A6270);
+  line-height: 1.65;
+  flex: 1;
+}
 
 .blog-meta {
   display: flex;
@@ -874,6 +879,23 @@ p { max-width: 68ch; }
   height: 54px;
   color: var(--gold);
   opacity: 0.9;
+}
+
+.blog-card a {
+  text-decoration: none;
+}
+
+.blog-card h3,
+.blog-card h3 a {
+  color: var(--navy, #12263F);
+}
+
+.blog-card-body {
+  padding: 1.75rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
 }
 
 /* ── Page Hero (inner pages) ────────────────────────────────── */
