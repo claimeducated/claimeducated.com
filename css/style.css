@@ -1195,6 +1195,27 @@ p { max-width: 68ch; }
   margin: 2rem 0;
 }
 
+/* ===== Beehiiv Embed Center Fix ===== */
+
+.beehiiv-embed {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.beehiiv-embed iframe {
+  width: 100% !important;
+  max-width: 520px !important;
+  margin: 0 auto !important;
+  border-radius: 14px;
+}
+
+/* Blog CTA spacing */
+.cta-banner .beehiiv-embed {
+  margin-top: 2rem;
+}
+
 /* ── Responsive ────────────────────────────────────────────── */
 @media (max-width: 1024px) {
   .footer-grid { grid-template-columns: 1fr 1fr; }
