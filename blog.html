@@ -47,6 +47,7 @@
 <div class="nav-mobile-overlay" id="mobile-nav">
   <span class="nav-mobile-close">&times;</span>
   <a href="index.html">Home</a><a href="about.html">About</a><a href="resources.html">Free Resources</a><a href="shop.html">The Library</a><a href="blog.html">Blog</a><a href="contact.html">Contact</a>
+  <a href="https://calendly.com/claimeducated/free-claim-qa" target="_blank" rel="noopener" class="btn btn-primary mt-4">Free Q&amp;A Call</a>
 </div>
 
 <main id="main-content">
@@ -204,14 +205,20 @@
 <section class="cta-banner">
   <div class="container">
     <div class="cta-banner-content reveal">
-      <span class="eyebrow" style="color:var(--gold-light);">Never Miss an Article</span>
+      <span class="eyebrow" style="color:var(--gold-light);">Stay Claim-Ready</span>
       <div class="divider-gold" style="margin:1rem auto;"></div>
-      <h2>Get new claim education straight to your inbox</h2>
-      <p class="mx-auto" style="max-width:48ch;">No spam. Just practical insurance education for policyholders — delivered when it's published.</p>
-      <form id="blog-newsletter" style="display:flex; gap:0; max-width:420px; margin:0 auto;" aria-label="Blog newsletter signup">
-        <input type="email" placeholder="Your email address" required aria-label="Email address" style="flex:1; padding:0.9rem 1.25rem; border:none; border-radius:4px 0 0 4px; font-family:var(--font-body); font-size:0.9rem; outline:none;" />
-        <button type="submit" class="btn btn-primary" style="border-radius:0 4px 4px 0; white-space:nowrap;">Subscribe</button>
-      </form>
+      <h2>Get claim tips and new resources when they publish</h2>
+      <p class="mx-auto" style="max-width:48ch;">
+        Practical insurance education for policyholders — no spam, no pressure, just useful guidance.
+      </p>
+
+      <div class="beehiiv-embed" style="max-width:520px; margin:2rem auto 0;">
+        <script
+          async
+          src="https://subscribe-forms.beehiiv.com/v3/loader.js"
+          data-beehiiv-form="7eea2ba2-a231-4841-adf8-0932ccdccb03">
+        </script>
+      </div>
     </div>
   </div>
 </section>
@@ -232,7 +239,24 @@
       </div>
       <div><p class="footer-heading">Navigate</p><ul class="footer-links"><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="resources.html">Free Resources</a></li><li><a href="shop.html#toolkit">Toolkit System</a></li><li><a href="blog.html">Blog</a></li><li><a href="contact.html">Contact</a></li></ul></div>
       <div><p class="footer-heading">Popular Articles</p><ul class="footer-links"><li><a href="blog/what-to-do-after-home-damage.html">First 15 Steps After Damage</a></li><li><a href="blog/how-to-request-a-supplement.html">How to Request a Supplement</a></li><li><a href="blog/insurance-claim-denied-what-to-do.html">Claim Denied — What Next?</a></li><li><a href="blog/actual-cash-value-vs-replacement-cost.html">ACV vs Replacement Cost</a></li></ul></div>
-      <div><p class="footer-heading">Stay in the Loop</p><p style="font-size:0.85rem; margin-bottom:0.75rem;">Free claim tips — straight to your inbox.</p><form id="newsletter-form" class="newsletter-form"><input type="email" placeholder="Your email address" required aria-label="Email" /><button type="submit">Join</button></form></div>
+      <div>
+  <p class="footer-heading">Stay in the Loop</p>
+  <p style="font-size:0.85rem; margin-bottom:1rem;">
+    Free claim tips, policy insights, and new resources — straight to your inbox.
+  </p>
+
+  <div class="beehiiv-embed">
+    <script
+      async
+      src="https://subscribe-forms.beehiiv.com/v3/loader.js"
+      data-beehiiv-form="7eea2ba2-a231-4841-adf8-0932ccdccb03">
+    </script>
+  </div>
+
+  <p style="font-size:0.72rem; color:rgba(255,255,255,0.45); margin-top:0.6rem;">
+    No spam. Unsubscribe anytime.
+  </p>
+</div>
     </div>
     <div class="footer-bottom">
       <p>&copy; <span id="footer-year"></span> ClaimEducated™. All rights reserved.</p>
@@ -243,17 +267,7 @@
 
 <script src="js/main.js"></script>
 <script>
-  document.getElementById('footer-year').textContent = new Date().getFullYear();
-
-  // Blog newsletter
-  const blogNewsletter = document.getElementById('blog-newsletter');
-  if (blogNewsletter) {
-    blogNewsletter.addEventListener('submit', e => {
-      e.preventDefault();
-      window.showToast('You\'re subscribed! New articles coming your way.');
-      blogNewsletter.reset();
-    });
-  }
+  document.getElementById('footer-year').textContent = new Date().getFullYear(); 
 
   // Category filter
   document.querySelectorAll('.blog-filter-btn').forEach(btn => {
