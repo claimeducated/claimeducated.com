@@ -1216,6 +1216,30 @@ p { max-width: 68ch; }
   margin-top: 2rem;
 }
 
+/* ===== Beehiiv Center Alignment ===== */
+
+.beehiiv-embed {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+.beehiiv-embed iframe,
+.beehiiv-embed div {
+  margin: 0 auto !important;
+}
+
+.cta-banner-content {
+  text-align: center;
+}
+
+.cta-banner-content .beehiiv-embed {
+  display: flex;
+  justify-content: center;
+}
+
 /* ── Responsive ────────────────────────────────────────────── */
 @media (max-width: 1024px) {
   .footer-grid { grid-template-columns: 1fr 1fr; }
