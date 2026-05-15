@@ -533,6 +533,12 @@ p { max-width: 68ch; }
 }
 
 .card-body { padding: 2.25rem; }
+
+.card-svg-icon {
+  width: 28px;
+  height: 28px;
+  color: var(--gold);
+}
 /* ── Free Resources Cards ─────────────────────────────────── */
 
 #checklists .grid-3 {
