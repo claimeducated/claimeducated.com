@@ -1253,3 +1253,12 @@ p { max-width: 68ch; }
   max-width: 100% !important;
   display: block !important;
 }
+
+/* Tighten blog spacing before newsletter CTA */
+#articles {
+  padding-bottom: 3rem !important;
+}
+
+#articles + .cta-banner {
+  margin-top: 0 !important;
+}
