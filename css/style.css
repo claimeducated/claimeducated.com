@@ -536,8 +536,8 @@ p { max-width: 68ch; }
 }
 
 #checklists .resource-card-top {
-  height: 345px;
-  min-height: 345px;
+  height: 330px;
+  min-height: 330px;
   display: flex;
   flex-direction: column;
 }
