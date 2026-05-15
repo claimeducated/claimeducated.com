@@ -1266,3 +1266,9 @@ p { max-width: 68ch; }
 #articles + .cta-banner {
   padding-top: 3.5rem !important;
 }
+
+#articles .reveal.text-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
