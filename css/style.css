@@ -807,7 +807,6 @@ p { max-width: 68ch; }
 .form-textarea { resize: vertical; min-height: 140px; }
 
 /* ── Blog Cards ────────────────────────────────────────────── */
-
 .blog-card {
   background: #fff;
   border-radius: var(--radius-md);
@@ -926,6 +925,12 @@ p { max-width: 68ch; }
   grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
   align-items: stretch;
+}
+
+.blog-card-img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* ── Page Hero (inner pages) ────────────────────────────────── */
