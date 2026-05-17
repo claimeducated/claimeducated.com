@@ -1428,4 +1428,14 @@ p { max-width: 68ch; }
     grid-column: auto;
     max-width: 100%;
   }
+
+}
+.blog-grid .blog-card {
+  margin-top: 0;
+  align-self: stretch;
+}
+
+.blog-grid .blog-card:nth-child(6) {
+  margin-top: 0;
+  transform: none;
 }
