@@ -1378,8 +1378,8 @@ p { max-width: 68ch; }
   padding-bottom: 2rem !important;
 }
 
-#articles .reveal:last-child {
-  margin-top: 2rem !important;
+#articles .reveal.text-center {
+  margin-top: 4rem !important;
 }
 
 #articles + .cta-banner {
@@ -1397,11 +1397,6 @@ p { max-width: 68ch; }
   grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
   align-items: start;
-}
-
-#articles .grid-3 .blog-card {
-  margin-top: 0 !important;
-  transform: none !important;
 }
 
 .trust-bar {
