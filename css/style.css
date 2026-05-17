@@ -891,7 +891,7 @@ p { max-width: 68ch; }
   display: flex;
   align-items: center;
   gap: 1rem;
-  margin-top: 1.25rem;
+  margin-top: auto;
   padding-top: 1.25rem;
   border-top: 1px solid var(--cream);
   font-size: 0.78rem;
@@ -919,6 +919,13 @@ p { max-width: 68ch; }
   grid-template-columns: 1fr 1fr;
   align-items: stretch;
   overflow: hidden;
+}
+
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  align-items: stretch;
 }
 
 /* ── Page Hero (inner pages) ────────────────────────────────── */
