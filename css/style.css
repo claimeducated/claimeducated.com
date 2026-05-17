@@ -1401,6 +1401,8 @@ p { max-width: 68ch; }
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 2rem;
+  max-width: 1100px;
+  margin: 4rem auto 0;
 }
 
 .qa-card {
