@@ -1392,6 +1392,18 @@ p { max-width: 68ch; }
   align-items: center;
 }
 
+#articles .grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  align-items: start;
+}
+
+#articles .grid-3 .blog-card {
+  margin-top: 0 !important;
+  transform: none !important;
+}
+
 .trust-bar {
   display: flex;
   justify-content: center;
@@ -1428,14 +1440,3 @@ p { max-width: 68ch; }
     grid-column: auto;
     max-width: 100%;
   }
-
-}
-.blog-grid .blog-card {
-  margin-top: 0;
-  align-self: stretch;
-}
-
-.blog-grid .blog-card:nth-child(6) {
-  margin-top: 0;
-  transform: none;
-}
