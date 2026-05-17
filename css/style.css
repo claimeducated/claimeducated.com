@@ -1397,7 +1397,6 @@ p { max-width: 68ch; }
   color: rgba(18, 38, 63, 0.9);
   letter-spacing: 0.01em;
 }
-
 .about-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -1405,8 +1404,9 @@ p { max-width: 68ch; }
 }
 
 .qa-card {
-  grid-column: 2 / 4;
+  grid-column: 2 / 3;
   justify-self: center;
+  width: 100%;
   max-width: 320px;
 }
 
