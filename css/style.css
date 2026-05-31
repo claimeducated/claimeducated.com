@@ -727,7 +727,15 @@ p { max-width: 68ch; }
   color: var(--gold);
   opacity: 0.9;
 }
-
+.product-card-header {
+  min-height: 280px;
+  display: flex;
+  flex-direction: column;
+}
+.product-card-price {
+  margin-top: auto;
+}
+}
 /* ── Testimonials ──────────────────────────────────────────── */
 .testimonial {
   background: white;
