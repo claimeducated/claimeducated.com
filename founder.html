@@ -23,23 +23,43 @@
 <body>
 
   <!-- Header / Nav -->
-  <header class="site-header">
-    <div class="container">
-      <a href="index.html" class="logo">ClaimEducated™</a>
+  <header class="site-header" role="banner">
+  <div class="container">
+    <nav class="nav" aria-label="Main navigation">
+      <a href="index.html" class="nav-logo" aria-label="ClaimEducated Home">
+        <img src="images/logo-nav.svg" alt="ClaimEducated — Insurance claims made simple" height="48">
+      </a>
+      <ul class="nav-links" role="list">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html" class="active">About</a></li>
+        <li><a href="founder.html">Founder</a></li>
+        <li><a href="resources.html">The Library</a></li>
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <div class="nav-cta">
+        <a href="https://calendly.com/claimeducated/free-claim-qa" target="_blank" rel="noopener" class="btn btn-secondary">Free Q&amp;A Call</a>
+      </div>
+      <button class="nav-toggle" aria-label="Open menu"><span></span><span></span><span></span></button>
+    </nav>
+  </div>
+</header>
 
-      <nav class="site-nav" aria-label="Main navigation">
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="founder.html" aria-current="page">Founder</a>
-        <a href="resources.html">The Library</a>
-         <a href="shop.html">Shop</a>
-        <a href="blog.html">Blog</a>
-      </nav>
-    </div>
-  </header>
+ <div class="nav-mobile-overlay" id="mobile-nav">
+  <span class="nav-mobile-close">&times;</span>
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="founder.html">Founder</a>
+  <a href="resources.html">The Library</a>
+  <a href="shop.html">Shop</a>
+  <a href="blog.html">Blog</a>
+  <a href="contact.html">Contact</a>
+  <a href="https://calendly.com/claimeducated/free-claim-qa" target="_blank" rel="noopener" class="btn btn-primary mt-4">Free Q&amp;A Call</a>
+</div>
 
-  <main>
-
+<main id="main-content">
+  
     <!-- Hero -->
     <section class="section hero-section">
       <div class="container">
@@ -255,5 +275,7 @@
     </div>
   </footer>
 
+  <script src="js/main.js"></script>
+<script>document.getElementById('footer-year').textContent = new Date().getFullYear();</script>
 </body>
 </html>
