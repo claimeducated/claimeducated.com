@@ -488,7 +488,7 @@ p { max-width: 68ch; }
 }
 
 .page-hero h1 br {
-  display: none;
+  display: inline;
 }
 
 @media (min-width: 769px) {
