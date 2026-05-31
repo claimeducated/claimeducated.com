@@ -1516,3 +1516,24 @@ p { max-width: 68ch; }
     text-align: center;
   }
 }
+
+.print-book-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1.75rem;
+}
+
+.print-book-image img {
+  width: 170px;
+  max-width: 100%;
+  border-radius: 6px;
+  box-shadow: 0 16px 35px rgba(18, 38, 63, 0.22);
+  transform: rotate(-2deg);
+  transition: var(--transition);
+}
+
+.product-card:hover .print-book-image img {
+  transform: rotate(0deg) translateY(-4px);
+  box-shadow: 0 20px 45px rgba(18, 38, 63, 0.28);
+}
