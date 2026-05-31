@@ -1397,11 +1397,13 @@ p { max-width: 68ch; }
   align-items: center;
 }
 
-#articles .grid-3 {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
-  align-items: start;
+@media (min-width: 769px) {
+  #articles .grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    align-items: start;
+  }
 }
 
 .trust-bar {
@@ -1440,6 +1442,7 @@ p { max-width: 68ch; }
     grid-column: auto;
     max-width: 100%;
   }
+}
 
 /* ================================
    MOBILE FIXES
@@ -1447,73 +1450,54 @@ p { max-width: 68ch; }
 
 @media (max-width: 768px) {
 
-  /* Footer subscribe form fix */
-  .footer-newsletter,
-  .newsletter-form,
-  .subscribe-form,
-  footer form {
-    display: flex !important;
-    flex-direction: column;
-    width: 100%;
-    max-width: 100%;
-    gap: 0.85rem;
-  }
-
-  .footer-newsletter input,
-  .newsletter-form input,
-  .subscribe-form input,
-  footer input[type="email"] {
-    display: block !important;
-    width: 100%;
-    max-width: 100%;
-    box-sizing: border-box;
-  }
-
-  .footer-newsletter button,
-  .newsletter-form button,
-  .subscribe-form button,
-  footer button {
-    width: 100%;
-  }
-
-
-  /* Blog articles mobile fix */
-  #articles,
-  .blog-grid,
-  .articles-grid {
+  #articles .grid-3,
+  .blog-grid {
     display: grid !important;
     grid-template-columns: 1fr !important;
-    gap: 2rem;
+    gap: 2rem !important;
   }
 
-  .blog-card,
-  .article-card {
+  .blog-card {
     width: 100% !important;
     max-width: 100% !important;
   }
 
-  .blog-card h3,
-  .article-card h3 {
-    font-size: 1.55rem;
-    line-height: 1.25;
-    word-break: normal;
-    overflow-wrap: normal;
+  .blog-card-body {
+    padding: 1.5rem !important;
   }
 
-  .blog-card p,
-  .article-card p {
-    font-size: 1rem;
-    line-height: 1.6;
-    word-break: normal;
-    overflow-wrap: normal;
+  .blog-card h3 {
+    font-size: 1.45rem !important;
+    line-height: 1.25 !important;
   }
 
-  .blog-card-badge,
-  .article-badge,
-  .card-badge {
-    white-space: normal;
-    max-width: 100%;
+  .blog-card p {
+    font-size: 1rem !important;
+    line-height: 1.6 !important;
+  }
+
+  .blog-tag {
+    white-space: normal !important;
     text-align: center;
+  }
+
+  .newsletter-form {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    gap: 0.75rem !important;
+  }
+
+  .newsletter-form input {
+    display: block !important;
+    width: 100% !important;
+    border: 1px solid rgba(255,255,255,0.12) !important;
+    border-radius: 4px !important;
+  }
+
+  .newsletter-form button {
+    width: 100% !important;
+    border-radius: 4px !important;
   }
 }
 
