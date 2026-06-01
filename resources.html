@@ -3,14 +3,28 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The Library — ClaimEducated™</title>
-  <meta name="description" content="Download free insurance claim checklists, one-pagers, and emergency guides from ClaimEducated™. No cost — just education every policyholder deserves." />
+  <title>The Library | ClaimEducated™</title>
+  <meta name="description" content="Download free insurance claim checklists, one-pagers, and emergency guides from ClaimEducated™. No cost, just education every policyholder deserves." />
   <meta name="keywords" content="free insurance claim checklist, free property claim guide, insurance claim tips free download, homeowner insurance claim help, policyholder rights checklist" />
   <link rel="canonical" href="https://claimeducated.com/resources.html" />
-  <meta property="og:title" content="The Library — ClaimEducated™" />
+  <meta property="og:title" content="The Library | ClaimEducated™" />
   <meta property="og:description" content="Free checklists, guides, and one-pagers for policyholders navigating insurance claims." />
   <link rel="stylesheet" href="css/style.css" />
-  <link rel="icon" href="images/logo-icon.svg" type="image/x-icon" />
+  <link rel="icon" href="images/logo-nav.svg" type="image/svg+xml" />
+
+  <!-- CollectionPage Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "The Library | ClaimEducated™",
+    "url": "https://claimeducated.com/resources.html",
+    "description": "Free insurance claim checklists, one-pagers, and emergency guides for policyholders navigating property insurance claims.",
+    "publisher": {
+      "@id": "https://claimeducated.com/#organization"
+    }
+  }
+  </script>
 </head>
 <body>
 
@@ -18,9 +32,9 @@
   <div class="container">
     <nav class="nav" aria-label="Main navigation">
       <a href="index.html" class="nav-logo" aria-label="ClaimEducated Home">
-        <img src="images/logo-nav.svg" alt="ClaimEducated — Insurance claims made simple" height="48">
+        <img src="images/logo-nav.svg" alt="ClaimEducated, Insurance claims made simple" height="48">
       </a>
-      <ul class="nav-links">
+      <ul class="nav-links" role="list">
         <li><a href="index.html">Home</a></li>
         <li><a href="about.html">About</a></li>
         <li><a href="founder.html">Founder</a></li>
@@ -29,11 +43,14 @@
         <li><a href="blog.html">Blog</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
-      <div class="nav-cta"><a href="https://calendly.com/claimeducated/free-claim-qa" target="_blank" rel="noopener" class="btn btn-secondary">Free Q&amp;A Call</a></div>
+      <div class="nav-cta">
+        <a href="https://calendly.com/claimeducated/free-claim-qa" target="_blank" rel="noopener" class="btn btn-secondary">Free Q&amp;A Call</a>
+      </div>
       <button class="nav-toggle" aria-label="Open menu"><span></span><span></span><span></span></button>
     </nav>
   </div>
 </header>
+
 <div class="nav-mobile-overlay" id="mobile-nav">
   <span class="nav-mobile-close">&times;</span>
   <a href="index.html">Home</a>
@@ -51,7 +68,11 @@
 <section class="page-hero">
   <div class="container">
     <div class="page-hero-content">
-      <nav class="breadcrumb" aria-label="Breadcrumb"><a href="index.html">Home</a><span>/</span><span aria-current="page">The Library</span></nav>
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="index.html">Home</a>
+        <span aria-hidden="true">/</span>
+        <span aria-current="page">The Library</span>
+      </nav>
       <span class="eyebrow">No cost. No catch. Just education.</span>
       <div class="divider-gold"></div>
       <h1>Free Resources<br>for Policyholders</h1>
@@ -61,7 +82,7 @@
 </section>
 
 <!-- How it works -->
-<section style="background:var(--gold-pale); padding:2.5rem 0; border-bottom:1px solid rgba(201,168,76,0.2);">
+<section style="background:var(--gold-pale); padding:2.5rem 0; border-bottom:1px solid rgba(201,168,76,0.2);" aria-label="How to get your free resource">
   <div class="container">
     <div style="display:flex; align-items:center; justify-content:center; gap:4rem; flex-wrap:wrap;">
       <div style="display:flex; align-items:center; gap:0.75rem;">
@@ -80,7 +101,7 @@
   </div>
 </section>
 
-<!-- ── One-Pagers & Checklists ─────────────────────────────── -->
+<!-- Checklists and One-Pagers -->
 <section class="section" id="checklists">
   <div class="container">
     <div class="section-header reveal">
@@ -95,53 +116,42 @@
       <!-- First 15 Minutes -->
       <div class="card reveal delay-1" style="border:1px solid rgba(201,168,76,0.15);">
         <div class="resource-card-top" style="background:linear-gradient(135deg,var(--navy),var(--navy-light)); padding:1.75rem; position:relative; overflow:hidden; height:345px; box-sizing:border-box; display:flex; flex-direction:column;">
-          <div style="margin-bottom:1.2rem; opacity:0.82;"><svg width="42" height="42" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <circle cx="12" cy="13" r="7" stroke="rgba(255,255,255,0.88)" stroke-width="1.5"/>
-  <path d="M12 13L15 10" stroke="rgba(255,255,255,0.88)" stroke-width="1.5" stroke-linecap="round"/>
-  <path d="M9 2H15" stroke="rgba(255,255,255,0.88)" stroke-width="1.5" stroke-linecap="round"/>
-  <path d="M12 5V3" stroke="rgba(255,255,255,0.88)" stroke-width="1.5" stroke-linecap="round"/>
-</svg>
+          <div style="margin-bottom:1.2rem; opacity:0.82;">
+            <svg width="42" height="42" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <circle cx="12" cy="13" r="7" stroke="rgba(255,255,255,0.88)" stroke-width="1.5"/>
+              <path d="M12 13L15 10" stroke="rgba(255,255,255,0.88)" stroke-width="1.5" stroke-linecap="round"/>
+              <path d="M9 2H15" stroke="rgba(255,255,255,0.88)" stroke-width="1.5" stroke-linecap="round"/>
+              <path d="M12 5V3" stroke="rgba(255,255,255,0.88)" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
           </div>
           <span style="position:absolute; top:1rem; right:1rem; background:var(--gold); color:var(--navy); font-size:0.6rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; padding:0.25rem 0.6rem; border-radius:100px;">FREE</span>
           <h3 style="color:var(--warm-white); font-size:1.1rem; margin-bottom:0.4rem;">First 15 Minutes After Property Damage</h3>
-          <p style="color:rgba(255,255,255,0.68); font-size:0.82rem;">Know what to do immediately after damage happens — before cleanup, repairs, or your first call to insurance.</p>
+          <p style="color:rgba(255,255,255,0.68); font-size:0.82rem;">Know what to do immediately after damage happens, before cleanup, repairs, or your first call to insurance.</p>
         </div>
         <div class="card-body">
           <p style="font-size:0.82rem; color:var(--slate); margin-bottom:1rem;">Subscribe to The Policyholder Brief to unlock this free one-pager.</p>
-
-  <a
-     href="https://claimeducated.beehiiv.com/subscribe"
-     target="_blank"
-     style="
-       display:inline-block;
-       width:100%;
-       text-align:center;
-       background:var(--gold);
-       color:var(--navy);
-       padding:0.85rem 1rem;
-       border-radius:10px;
-       text-decoration:none;
-       font-weight:700;
-       font-size:0.9rem;
-       transition:0.2s ease;
-     "
-  >
-     Get Free Guide
- </a>
-
+          <a
+            href="https://claimeducated.beehiiv.com/subscribe"
+            target="_blank"
+            rel="noopener"
+            style="display:inline-block; width:100%; text-align:center; background:var(--gold); color:var(--navy); padding:0.85rem 1rem; border-radius:10px; text-decoration:none; font-weight:700; font-size:0.9rem; transition:0.2s ease;"
+          >
+            Get Free Guide
+          </a>
           <p style="font-size:0.7rem; color:var(--slate-light); margin-top:0.5rem; text-align:center;">No spam. Unsubscribe anytime.</p>
         </div>
       </div>
 
       <!-- Storm Claim Checklist -->
       <div class="card reveal delay-2" style="border:1px solid rgba(201,168,76,0.15);">
-       <div class="resource-card-top" style="background:linear-gradient(135deg,var(--navy),var(--navy-light)); padding:1.75rem; position:relative; overflow:hidden; height:345px; box-sizing:border-box; display:flex; flex-direction:column;">
-          <div style="margin-bottom:1.2rem; opacity:0.82;"><svg width="42" height="42" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <path d="M5 6H19" stroke="rgba(255,255,255,0.88)" stroke-width="1.5" stroke-linecap="round"/>
-  <path d="M7 10H17" stroke="rgba(255,255,255,0.88)" stroke-width="1.5" stroke-linecap="round"/>
-  <path d="M9 14H15" stroke="rgba(255,255,255,0.88)" stroke-width="1.5" stroke-linecap="round"/>
-  <path d="M11 18H13" stroke="rgba(255,255,255,0.88)" stroke-width="1.5" stroke-linecap="round"/>
-</svg>
+        <div class="resource-card-top" style="background:linear-gradient(135deg,var(--navy),var(--navy-light)); padding:1.75rem; position:relative; overflow:hidden; height:345px; box-sizing:border-box; display:flex; flex-direction:column;">
+          <div style="margin-bottom:1.2rem; opacity:0.82;">
+            <svg width="42" height="42" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M5 6H19" stroke="rgba(255,255,255,0.88)" stroke-width="1.5" stroke-linecap="round"/>
+              <path d="M7 10H17" stroke="rgba(255,255,255,0.88)" stroke-width="1.5" stroke-linecap="round"/>
+              <path d="M9 14H15" stroke="rgba(255,255,255,0.88)" stroke-width="1.5" stroke-linecap="round"/>
+              <path d="M11 18H13" stroke="rgba(255,255,255,0.88)" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
           </div>
           <span style="position:absolute; top:1rem; right:1rem; background:var(--gold); color:var(--navy); font-size:0.6rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; padding:0.25rem 0.6rem; border-radius:100px;">FREE</span>
           <h3 style="color:var(--warm-white); font-size:1.1rem; margin-bottom:0.4rem;">Storm Claim Checklist</h3>
@@ -149,27 +159,14 @@
         </div>
         <div class="card-body">
           <p style="font-size:0.82rem; color:var(--slate); margin-bottom:1rem;">Subscribe to The Policyholder Brief to unlock this free one-pager.</p>
-
-  <a
-    href="https://claimeducated.beehiiv.com/subscribe"
-    target="_blank"
-    style="
-      display:inline-block;
-      width:100%;
-      text-align:center;
-      background:var(--gold);
-      color:var(--navy);
-      padding:0.85rem 1rem;
-      border-radius:10px;
-      text-decoration:none;
-      font-weight:700;
-      font-size:0.9rem;
-      transition:0.2s ease;
-    "
-  >
-    Get Free Guide
-</a>
-
+          <a
+            href="https://claimeducated.beehiiv.com/subscribe"
+            target="_blank"
+            rel="noopener"
+            style="display:inline-block; width:100%; text-align:center; background:var(--gold); color:var(--navy); padding:0.85rem 1rem; border-radius:10px; text-decoration:none; font-weight:700; font-size:0.9rem; transition:0.2s ease;"
+          >
+            Get Free Guide
+          </a>
           <p style="font-size:0.7rem; color:var(--slate-light); margin-top:0.5rem; text-align:center;">No spam. Unsubscribe anytime.</p>
         </div>
       </div>
@@ -177,39 +174,27 @@
       <!-- Don't Throw Away -->
       <div class="card reveal delay-3" style="border:1px solid rgba(201,168,76,0.15);">
         <div class="resource-card-top" style="background:linear-gradient(135deg,var(--navy),var(--navy-light)); padding:1.75rem; position:relative; overflow:hidden; height:345px; box-sizing:border-box; display:flex; flex-direction:column;">
-          <div style="margin-bottom:1.2rem; opacity:0.82;"><svg width="42" height="42" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect x="4" y="7" width="16" height="12" rx="1.5" stroke="rgba(255,255,255,0.88)" stroke-width="1.5"/>
-  <path d="M4 10H20" stroke="rgba(255,255,255,0.88)" stroke-width="1.5"/>
-  <path d="M10 13H14" stroke="rgba(255,255,255,0.88)" stroke-width="1.5" stroke-linecap="round"/>
-</svg>
+          <div style="margin-bottom:1.2rem; opacity:0.82;">
+            <svg width="42" height="42" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <rect x="4" y="7" width="16" height="12" rx="1.5" stroke="rgba(255,255,255,0.88)" stroke-width="1.5"/>
+              <path d="M4 10H20" stroke="rgba(255,255,255,0.88)" stroke-width="1.5"/>
+              <path d="M10 13H14" stroke="rgba(255,255,255,0.88)" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
           </div>
           <span style="position:absolute; top:1rem; right:1rem; background:var(--gold); color:var(--navy); font-size:0.6rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; padding:0.25rem 0.6rem; border-radius:100px;">FREE</span>
-          <h3 style="color:var(--warm-white); font-size:1.1rem; margin-bottom:0.4rem;">Don’t Throw Away Damaged Items</h3>
+          <h3 style="color:var(--warm-white); font-size:1.1rem; margin-bottom:0.4rem;">Do Not Throw Away Damaged Items</h3>
           <p style="color:rgba(255,255,255,0.68); font-size:0.82rem;">Damaged belongings can be evidence. Learn what to preserve, photograph, and document before disposal.</p>
         </div>
         <div class="card-body">
           <p style="font-size:0.82rem; color:var(--slate); margin-bottom:1rem;">Subscribe to The Policyholder Brief to unlock this free one-pager.</p>
-
-  <a
-      href="https://claimeducated.beehiiv.com/subscribe"
-      target="_blank"
-      style="
-        display:inline-block;
-        width:100%;
-        text-align:center;
-        background:var(--gold);
-        color:var(--navy);
-        padding:0.85rem 1rem;
-        border-radius:10px;
-        text-decoration:none;
-        font-weight:700;
-        font-size:0.9rem;
-        transition:0.2s ease;
-      "
-   >
-      Get Free Guide
- </a>
-
+          <a
+            href="https://claimeducated.beehiiv.com/subscribe"
+            target="_blank"
+            rel="noopener"
+            style="display:inline-block; width:100%; text-align:center; background:var(--gold); color:var(--navy); padding:0.85rem 1rem; border-radius:10px; text-decoration:none; font-weight:700; font-size:0.9rem; transition:0.2s ease;"
+          >
+            Get Free Guide
+          </a>
           <p style="font-size:0.7rem; color:var(--slate-light); margin-top:0.5rem; text-align:center;">No spam. Unsubscribe anytime.</p>
         </div>
       </div>
@@ -239,7 +224,7 @@
       <span class="eyebrow" style="color:var(--gold-light);">Ready to go deeper?</span>
       <div class="divider-gold" style="margin:1rem auto;"></div>
       <h2>Explore the full ClaimEducated™ Shop</h2>
-      <p class="mx-auto" style="max-width:50ch;">Get the premium ebook, ClaimEducated™ Toolkit System, and published book — built for policyholders who want to be truly prepared.</p>
+      <p class="mx-auto" style="max-width:50ch;">Get the premium ebook, ClaimEducated™ Toolkit System, and published book, built for policyholders who want to be truly prepared.</p>
       <a href="shop.html#toolkit" class="btn btn-primary btn-lg">Explore the Shop</a>
     </div>
   </div>
@@ -250,54 +235,71 @@
 <footer class="site-footer">
   <div class="container">
     <div class="footer-grid">
+
       <div class="footer-brand">
         <div class="nav-logo" style="margin-bottom:1rem;"><span class="logo-text">Claim<span>Educated</span>™</span></div>
-        <p>A policyholder education ecosystem helping homeowners and renters navigate insurance claims.</p>
+        <p>A policyholder education ecosystem helping homeowners and renters understand their rights and navigate the claims process with confidence.</p>
         <div class="social-links" aria-label="Social media links">
-          <a href="https://www.facebook.com/profile.php?id=61574303816598" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Facebook"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
-          <a href="https://www.tiktok.com/@claimeducated" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="TikTok"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.76a4.85 4.85 0 01-1.01-.07z"/></svg></a>
-          <a href="https://www.youtube.com/@claimeducated" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="YouTube"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+          <a href="https://www.facebook.com/profile.php?id=61574303816598" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="ClaimEducated on Facebook"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+          <a href="https://www.tiktok.com/@claimeducated" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="ClaimEducated on TikTok"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.76a4.85 4.85 0 01-1.01-.07z"/></svg></a>
+          <a href="https://www.youtube.com/@claimeducated" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="ClaimEducated on YouTube"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
         </div>
       </div>
-      <div><p class="footer-heading">Navigate</p><ul class="footer-links"><li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="founder.html">Founder</a></li>
-        <li><a href="resources.html">The Library</a></li>
-        <li><a href="shop.html#toolkit">Toolkit System</a></li>
-        <li><a href="blog.html">Blog</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul></div>
-      <div><p class="footer-heading">Resources</p><ul class="footer-links"><li><a href="resources.html">Free Checklists</a></li><li><a href="shop.html">Premium Ebook</a></li><li><a href="shop.html#toolkit">Template Modules</a></li><li><a href="https://www.amazon.com/dp/9798245173009" target="_blank" rel="noopener">Buy the Book</a></li><li><a href="https://calendly.com/claimeducated/claim-qa" target="_blank" rel="noopener">Free Q&amp;A Call</a></li></ul></div>
+
       <div>
-  <p class="footer-heading">Stay in the Loop</p>
-  <p style="font-size:0.85rem; margin-bottom:1rem;">
-    Free claim tips, policy insights, and new resources — straight to your inbox.
-  </p>
+        <p class="footer-heading">Navigate</p>
+        <ul class="footer-links" role="list">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="founder.html">Founder</a></li>
+          <li><a href="resources.html">The Library</a></li>
+          <li><a href="shop.html#toolkit">Toolkit System</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
 
-  <div class="beehiiv-embed">
-    <script
-      async
-      src="https://subscribe-forms.beehiiv.com/v3/loader.js"
-      data-beehiiv-form="7eea2ba2-a231-4841-adf8-0932ccdccb03">
-    </script>
-  </div>
+      <div>
+        <p class="footer-heading">Resources</p>
+        <ul class="footer-links" role="list">
+          <li><a href="resources.html">Free Checklists</a></li>
+          <li><a href="shop.html#ebook">Premium Ebook</a></li>
+          <li><a href="shop.html#toolkit">Template Modules</a></li>
+          <li><a href="https://www.amazon.com/dp/9798245173009" target="_blank" rel="noopener">Buy the Book</a></li>
+          <li><a href="https://calendly.com/claimeducated/free-claim-qa" target="_blank" rel="noopener">Free Q&amp;A Call</a></li>
+        </ul>
+      </div>
 
-  <p style="font-size:0.72rem; color:rgba(255,255,255,0.45); margin-top:0.6rem;">
-    No spam. Unsubscribe anytime.
-  </p>
-</div>
-    </div>
+      <div>
+        <p class="footer-heading">Stay in the Loop</p>
+        <p style="font-size:0.85rem; margin-bottom:1.25rem;">
+          Free claim tips, policy insights, and new resources straight to your inbox.
+        </p>
+        <div class="beehiiv-embed">
+          <script
+            async
+            src="https://subscribe-forms.beehiiv.com/v3/loader.js"
+            data-beehiiv-form="7eea2ba2-a231-4841-adf8-0932ccdccb03">
+          </script>
+        </div>
+        <p style="font-size:0.72rem; color:rgba(255,255,255,0.45); margin-top:0.6rem;">
+          No spam. Unsubscribe anytime.
+        </p>
+      </div>
+
+    </div><!-- /.footer-grid -->
+
     <div class="footer-bottom">
       <p>&copy; <span id="footer-year"></span> ClaimEducated™. All rights reserved.</p>
-      <div class="footer-legal"><a href="privacy.html">Privacy Policy</a><a href="disclaimer.html">Legal Disclaimer</a></div>
+      <div class="footer-legal">
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="disclaimer.html">Legal Disclaimer</a>
+      </div>
     </div>
   </div>
 </footer>
 
 <script src="js/main.js"></script>
-<script>
-  document.getElementById('footer-year').textContent = new Date().getFullYear();
-
-</script>
+<script>document.getElementById('footer-year').textContent = new Date().getFullYear();</script>
 </body>
 </html>
