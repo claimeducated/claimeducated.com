@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ClaimEducated™ — Insurance Claims Made Simple</title>
+  <title>ClaimEducated™ | Insurance Claims Made Simple</title>
 
   <!-- SEO Meta Tags -->
-  <meta name="description" content="ClaimEducated™ helps homeowners and renters understand their insurance rights, navigate the claims process, and know what they're owed. Expert policyholder education resources, guides, and tools." />
-  <meta name="keywords" content="insurance claims help, homeowner insurance claim guide, how to file insurance claim, insurance policyholder rights, property insurance claim tips, insurance adjuster secrets, home insurance claim denied, insurance claim negotiation, ClaimEducated" />
+  <meta name="description" content="ClaimEducated™ helps homeowners and renters understand their insurance policy, navigate the claims process, and feel confident at every step. Plain-language policyholder education resources, guides, and tools." />
+  <meta name="keywords" content="insurance claims help, homeowner insurance claim guide, how to file insurance claim, insurance policyholder rights, property insurance claim tips, property claim education, home insurance claim denied, ClaimEducated" />
   <meta name="author" content="ClaimEducated™" />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://claimeducated.com/" />
@@ -15,47 +15,72 @@
   <!-- Open Graph -->
   <meta property="og:type"        content="website" />
   <meta property="og:url"         content="https://claimeducated.com/" />
-  <meta property="og:title"       content="ClaimEducated™ — Insurance Claims Made Simple" />
-  <meta property="og:description" content="Know your rights. Understand your policy. Get what you're owed. Expert policyholder education from ClaimEducated™." />
+  <meta property="og:title"       content="ClaimEducated™ | Insurance Claims Made Simple" />
+  <meta property="og:description" content="Know your rights. Understand your policy. Navigate your claim with confidence. Policyholder education from ClaimEducated™." />
   <meta property="og:image"       content="https://claimeducated.com/images/og-home.jpg" />
 
   <!-- Twitter Card -->
   <meta name="twitter:card"        content="summary_large_image" />
-  <meta name="twitter:title"       content="ClaimEducated™ — Insurance Claims Made Simple" />
-  <meta name="twitter:description" content="Know your rights. Understand your policy. Get what you're owed." />
+  <meta name="twitter:title"       content="ClaimEducated™ | Insurance Claims Made Simple" />
+  <meta name="twitter:description" content="Know your rights. Understand your policy. Navigate your claim with confidence." />
   <meta name="twitter:image"       content="https://claimeducated.com/images/og-home.jpg" />
 
   <!-- Schema.org Structured Data -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "EducationalOrganization",
-    "name": "ClaimEducated™",
-    "url": "https://claimeducated.com",
-    "description": "Policyholder education ecosystem helping homeowners and renters navigate insurance claims.",
-    "sameAs": [
-      "https://www.facebook.com/claimeducated",
-      "https://www.tiktok.com/@claimeducated",
-      "https://www.youtube.com/@claimeducated"
+    "@graph": [
+      {
+        "@type": "EducationalOrganization",
+        "@id": "https://claimeducated.com/#organization",
+        "name": "ClaimEducated™",
+        "url": "https://claimeducated.com",
+        "logo": "https://claimeducated.com/images/logo-nav.svg",
+        "description": "ClaimEducated™ is a property insurance claims education platform that helps homeowners, renters, and policyholders understand, document, and navigate the claim process through plain-language resources, tools, and step-by-step guidance.",
+        "founder": {
+          "@type": "Person",
+          "name": "Sydney Dawson",
+          "url": "https://claimeducated.com/founder.html"
+        },
+        "sameAs": [
+          "https://www.facebook.com/profile.php?id=61574303816598",
+          "https://www.tiktok.com/@claimeducated",
+          "https://www.youtube.com/@claimeducated"
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://claimeducated.com/#website",
+        "url": "https://claimeducated.com",
+        "name": "ClaimEducated™",
+        "publisher": {
+          "@id": "https://claimeducated.com/#organization"
+        },
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://claimeducated.com/blog.html?q={search_term_string}"
+          },
+          "query-input": "required name=search_term_string"
+        }
+      }
     ]
   }
   </script>
 
   <link rel="stylesheet" href="css/style.css" />
-  <link rel="icon" href="images/logo-nav.svg" type="image/x-icon" />
+  <link rel="icon" href="images/logo-nav.svg" type="image/svg+xml" />
 </head>
 <body>
 
-<!-- ══════════════════════════════════════════════════════════ -->
-<!--  HEADER / NAV                                             -->
-<!-- ══════════════════════════════════════════════════════════ -->
+<!-- HEADER / NAV -->
 <header class="site-header" role="banner">
   <div class="container">
     <nav class="nav" aria-label="Main navigation">
       <a href="index.html" class="nav-logo" aria-label="ClaimEducated Home">
-  <img src="images/logo-nav.svg" alt="ClaimEducated — Insurance claims made simple" height="48">
-</a>
-
+        <img src="images/logo-nav.svg" alt="ClaimEducated, Insurance claims made simple" height="48">
+      </a>
       <ul class="nav-links" role="list">
         <li><a href="index.html">Home</a></li>
         <li><a href="about.html">About</a></li>
@@ -65,11 +90,9 @@
         <li><a href="blog.html">Blog</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
-
       <div class="nav-cta">
         <a href="https://calendly.com/claimeducated/free-claim-qa" target="_blank" rel="noopener" class="btn btn-secondary">Free Q&amp;A Call</a>
       </div>
-
       <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
         <span></span><span></span><span></span>
       </button>
@@ -90,9 +113,7 @@
   <a href="https://calendly.com/claimeducated/free-claim-qa" target="_blank" rel="noopener" class="btn btn-primary mt-4">Free Q&amp;A Call</a>
 </div>
 
-<!-- ══════════════════════════════════════════════════════════ -->
-<!--  HERO                                                     -->
-<!-- ══════════════════════════════════════════════════════════ -->
+<!-- HERO -->
 <main id="main-content">
 <section class="hero" aria-labelledby="hero-heading">
   <div class="hero-bg" aria-hidden="true"></div>
@@ -110,7 +131,7 @@
           Your outcome.
         </h1>
         <p class="hero-subtitle animate-up delay-2">
-          ClaimEducated™ gives homeowners and renters the knowledge, tools, and confidence to navigate the insurance claims process so you understand exactly what you're owed and how to get it.
+          ClaimEducated™ gives homeowners and renters the knowledge, tools, and confidence to navigate the insurance claims process so you understand exactly how it works and feel prepared at every step.
         </p>
         <div class="hero-actions animate-up delay-3">
           <a href="resources.html" class="btn btn-primary btn-lg">Get Free Resources</a>
@@ -150,10 +171,8 @@
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════════════════════ -->
-<!--  TRUST BAR                                               -->
-<!-- ══════════════════════════════════════════════════════════ -->
-<section style="background:var(--cream); padding:2rem 0; border-bottom:1px solid rgba(201,168,76,0.15);" aria-label="As seen on">
+<!-- TRUST BAR -->
+<section style="background:var(--cream); padding:2rem 0; border-bottom:1px solid rgba(201,168,76,0.15);" aria-label="Trusted policyholder education">
   <div class="container">
     <div style="display:flex; align-items:center; justify-content:center; gap:3rem; flex-wrap:wrap;">
       <span class="eyebrow" style="color:var(--slate-light);">Trusted Policyholder Education</span>
@@ -164,72 +183,69 @@
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════════════════════ -->
-<!--  WHAT WE DO                                              -->
-<!-- ══════════════════════════════════════════════════════════ -->
+<!-- WHAT WE DO -->
 <section class="section" aria-labelledby="mission-heading">
   <div class="container">
     <div class="section-header text-center reveal">
       <span class="eyebrow">Our Mission</span>
       <div class="divider-gold"></div>
-      <h2 id="mission-heading">The insurance industry has an education gap.<br>We're closing it.</h2>
+      <h2 id="mission-heading">The insurance industry has an education gap.<br>We are closing it.</h2>
       <p class="lead mx-auto mt-3">
-        Most policyholders don't realize what they're entitled to until it's too late. ClaimEducated™ exists to change that by giving you the knowledge adjusters already have, before your claim ever begins.
+        Most policyholders do not realize what their policy covers until they are already in the middle of a claim. ClaimEducated™ exists to change that by giving you the knowledge you need before your claim ever begins.
       </p>
     </div>
 
     <div class="grid-3 mt-8">
       <div class="card reveal delay-1">
         <div class="card-body">
-          <div class="card-icon" aria-hidden="true"><svg class="card-svg-icon" viewBox="0 0 64 64" fill="none" aria-hidden="true">
-  <rect x="17" y="14" width="30" height="40" rx="4" stroke="currentColor" stroke-width="2"/>
-  <path d="M25 14v-3h14v3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-  <rect x="24" y="10" width="16" height="8" rx="2" stroke="currentColor" stroke-width="2"/>
-  <path d="M24 27h16M24 34h16M24 41h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-</svg>
+          <div class="card-icon" aria-hidden="true">
+            <svg class="card-svg-icon" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+              <rect x="17" y="14" width="30" height="40" rx="4" stroke="currentColor" stroke-width="2"/>
+              <path d="M25 14v-3h14v3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <rect x="24" y="10" width="16" height="8" rx="2" stroke="currentColor" stroke-width="2"/>
+              <path d="M24 27h16M24 34h16M24 41h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
           </div>
           <h3>Know Your Policy</h3>
-          <p class="mt-2" style="color:var(--slate);">Understand what's covered, what's excluded, and what leverage you have before you ever file a claim.</p>
+          <p class="mt-2" style="color:var(--slate);">Understand what is covered, what is excluded, and what options you have before you ever file a claim.</p>
         </div>
       </div>
       <div class="card reveal delay-2">
         <div class="card-body">
           <div class="card-icon" aria-hidden="true">
-  <svg class="card-svg-icon" viewBox="0 0 64 64" fill="none" aria-hidden="true">
-    <circle cx="32" cy="32" r="18" stroke="currentColor" stroke-width="2.5"/>
-    <path d="M26 38L38 26" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
-    <path d="M30 26H38V34" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-  </svg>
+            <svg class="card-svg-icon" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+              <circle cx="32" cy="32" r="18" stroke="currentColor" stroke-width="2.5"/>
+              <path d="M26 38L38 26" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+              <path d="M30 26H38V34" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
           </div>
           <h3>Navigate Confidently</h3>
-          <p class="mt-2" style="color:var(--slate);">Learn how to communicate with adjusters, document your damage, and follow up with purpose — not frustration.</p>
+          <p class="mt-2" style="color:var(--slate);">Learn how to communicate with adjusters, document your damage, and follow up with purpose, not frustration.</p>
         </div>
       </div>
       <div class="card reveal delay-3">
-  <div class="card-body">
-    <div class="card-icon" aria-hidden="true">
-      <svg class="card-svg-icon" viewBox="0 0 64 64" fill="none" aria-hidden="true">
-        <path d="M32 12v40" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-        <path d="M22 52h20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-        <path d="M18 20h28" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-        <path d="M18 20l-8 18h16l-8-18Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
-        <path d="M46 20l-8 18h16l-8-18Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
-        <path d="M10 38c1 4 4 6 8 6s7-2 8-6M38 38c1 4 4 6 8 6s7-2 8-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-      </svg>
+        <div class="card-body">
+          <div class="card-icon" aria-hidden="true">
+            <svg class="card-svg-icon" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+              <path d="M32 12v40" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <path d="M22 52h20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <path d="M18 20h28" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <path d="M18 20l-8 18h16l-8-18Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+              <path d="M46 20l-8 18h16l-8-18Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+              <path d="M10 38c1 4 4 6 8 6s7-2 8-6M38 38c1 4 4 6 8 6s7-2 8-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3>Understand Your Coverage</h3>
+          <p class="mt-2" style="color:var(--slate);">
+            From supplements to appeals, learn the full scope of your policy so you can participate in your claim with clarity and confidence.
+          </p>
+        </div>
+      </div>
     </div>
-
-    <h3>Understand What You're Owed</h3>
-    <p class="mt-2" style="color:var(--slate);">
-      From supplements to appeals, know the full scope of your rights as a policyholder so nothing gets left on the table.
-    </p>
   </div>
-</div> 
-    </div>
 </section>
 
-<!-- ══════════════════════════════════════════════════════════ -->
-<!--  CLAIM™ FRAMEWORK                                        -->
-<!-- ══════════════════════════════════════════════════════════ -->
+<!-- CLAIM™ FRAMEWORK -->
 <section class="section section--cream" aria-labelledby="claim-heading">
   <div class="container">
     <div class="section-header text-center reveal">
@@ -258,7 +274,7 @@
       <div class="claim-step">
         <div class="claim-letter">I</div>
         <div class="claim-word">Inquire</div>
-        <p class="claim-desc">Ask the right questions. Request itemized estimates. Challenge anything that doesn't add up.</p>
+        <p class="claim-desc">Ask the right questions. Request itemized estimates. Challenge anything that does not add up.</p>
       </div>
       <div class="claim-step">
         <div class="claim-letter">M</div>
@@ -269,17 +285,15 @@
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════════════════════ -->
-<!--  FEATURED LIBRARY + TOOLKIT SYSTEM                        -->
-<!-- ══════════════════════════════════════════════════════════ -->
+<!-- SHOP -->
 <section class="section" aria-labelledby="products-heading">
   <div class="container">
     <div class="section-header text-center reveal">
       <span class="eyebrow">Shop</span>
       <div class="divider-gold"></div>
-      <h2 id="products-heading">Start with education. Use the tools when it’s time to act.</h2>
+      <h2 id="products-heading">Start with education. Use the tools when it is time to act.</h2>
       <p class="lead mx-auto mt-2" style="max-width:64ch;">
-        The Shop is organized around three ways to prepare for a claim: 
+        The Shop is organized around three ways to prepare for a claim:
         education, practical tools, and physical reference materials.
       </p>
     </div>
@@ -309,33 +323,33 @@
       </div>
 
       <!-- Toolkit System -->
-<div class="product-card reveal delay-2" style="border:2px solid var(--gold); position:relative; overflow:visible; border-radius:var(--radius-lg);">
-  <div style="position:absolute; top:-13px; left:50%; transform:translateX(-50%); background:var(--gold); color:var(--navy); font-size:0.65rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; padding:0.3rem 1.2rem; border-radius:100px; white-space:nowrap; z-index:10;">
-    Core Offer
-  </div>
-  <div style="overflow:hidden; border-radius:var(--radius-lg);">
-    <div class="product-card-header" style="background:linear-gradient(160deg, #162d55 0%, #1e3a6e 100%);">
-      <span class="product-card-badge featured">Complete Toolkit</span>
-      <h3>ClaimEducated™ Toolkit Bundle</h3>
-      <p>The complete policyholder operating system — Essentials, Negotiation, Denial &amp; Dispute, and Catastrophe Recovery in one place.</p>
-      <div class="product-card-price">
-        <span class="price-amount">$67</span>
-        <span class="price-label">complete toolkit</span>
+      <div class="product-card reveal delay-2" style="border:2px solid var(--gold); position:relative; overflow:visible; border-radius:var(--radius-lg);">
+        <div style="position:absolute; top:-13px; left:50%; transform:translateX(-50%); background:var(--gold); color:var(--navy); font-size:0.65rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; padding:0.3rem 1.2rem; border-radius:100px; white-space:nowrap; z-index:10;">
+          Core Offer
+        </div>
+        <div style="overflow:hidden; border-radius:var(--radius-lg);">
+          <div class="product-card-header" style="background:linear-gradient(160deg, #162d55 0%, #1e3a6e 100%);">
+            <span class="product-card-badge featured">Complete Toolkit</span>
+            <h3>ClaimEducated™ Toolkit Bundle</h3>
+            <p>The complete policyholder operating system. Essentials, Negotiation, Denial &amp; Dispute, and Catastrophe Recovery in one place.</p>
+            <div class="product-card-price">
+              <span class="price-amount">$67</span>
+              <span class="price-label">complete toolkit</span>
+            </div>
+          </div>
+          <div class="product-card-body">
+            <ul class="product-features">
+              <li><span class="check-icon">✓</span> ClaimEducated Essentials™</li>
+              <li><span class="check-icon">✓</span> Negotiation Kit™</li>
+              <li><span class="check-icon">✓</span> Denial &amp; Dispute Kit™</li>
+              <li><span class="check-icon">✓</span> Catastrophe Recovery Kit™</li>
+            </ul>
+            <a href="https://payhip.com/b/DAxPR" class="btn btn-primary" style="width:100%; justify-content:center;" target="_blank" rel="noopener">
+              View Complete Toolkit
+            </a>
+          </div>
+        </div>
       </div>
-    </div>
-    <div class="product-card-body">
-      <ul class="product-features">
-        <li><span class="check-icon">✓</span> ClaimEducated Essentials™</li>
-        <li><span class="check-icon">✓</span> Negotiation Kit™</li>
-        <li><span class="check-icon">✓</span> Denial &amp; Dispute Kit™</li>
-        <li><span class="check-icon">✓</span> Catastrophe Recovery Kit™</li>
-      </ul>
-      <a href="https://payhip.com/b/DAxPR" class="btn btn-primary" style="width:100%; justify-content:center;" target="_blank" rel="noopener">
-        View Complete Toolkit
-      </a>
-    </div>
-  </div>
-</div>
 
       <!-- Published Book -->
       <div class="product-card reveal delay-3">
@@ -363,13 +377,11 @@
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════════════════════ -->
-<!--  FREE RESOURCES CTA                                      -->
-<!-- ══════════════════════════════════════════════════════════ -->
+<!-- FREE RESOURCES CTA -->
 <section class="cta-banner" aria-labelledby="cta-heading">
   <div class="container">
     <div class="cta-banner-content reveal">
-      <span class="eyebrow" style="color:var(--gold-light);">Start Here — It's Free</span>
+      <span class="eyebrow" style="color:var(--gold-light);">Start Here. It is Free.</span>
       <div class="divider-gold" style="margin:1rem auto;"></div>
       <h2 id="cta-heading">Not sure where to start?</h2>
       <p style="max-width:52ch;" class="mx-auto">Download our free one-pagers, checklists, and emergency guides. No strings. Just education the way it should be.</p>
@@ -381,9 +393,7 @@
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════════════════════ -->
-<!--  TESTIMONIALS                                            -->
-<!-- ══════════════════════════════════════════════════════════ -->
+<!-- TESTIMONIALS -->
 <section class="section section--cream" aria-labelledby="testimonials-heading">
   <div class="container">
     <div class="section-header text-center reveal">
@@ -409,9 +419,7 @@
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════════════════════ -->
-<!--  LATEST BLOG POSTS                                       -->
-<!-- ══════════════════════════════════════════════════════════ -->
+<!-- LATEST BLOG POSTS -->
 <section class="section" aria-labelledby="blog-preview-heading">
   <div class="container">
     <div style="display:flex; align-items:flex-end; justify-content:space-between; margin-bottom:3rem; flex-wrap:wrap; gap:1rem;" class="reveal">
@@ -424,103 +432,71 @@
     </div>
 
     <div class="grid-3">
-      
-    <a href="blog/what-to-do-after-home-damage.html" class="blog-card reveal delay-1">
-  
-  <div class="blog-card-img">
-    <div class="blog-card-img-placeholder">
-      <svg class="blog-svg-icon" viewBox="0 0 64 64" fill="none">
-    <path d="M12 30L32 14L52 30" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M18 29V52H46V29" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>
-    <path d="M27 52V39H37V52" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>
-    <path d="M24 34H31" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
-    <path d="M40 34H42" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
-    <path d="M42 18L46 24" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
-  </svg>
+
+      <a href="blog/what-to-do-after-home-damage.html" class="blog-card reveal delay-1">
+        <div class="blog-card-img">
+          <div class="blog-card-img-placeholder">
+            <svg class="blog-svg-icon" viewBox="0 0 64 64" fill="none">
+              <path d="M12 30L32 14L52 30" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M18 29V52H46V29" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>
+              <path d="M27 52V39H37V52" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>
+              <path d="M24 34H31" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+              <path d="M40 34H42" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+              <path d="M42 18L46 24" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+        </div>
+        <div class="blog-card-body">
+          <span class="blog-tag">Claims 101</span>
+          <h3>The First 15 Things to Do After Home Damage</h3>
+          <p>What you do in the first hours after property damage directly affects your claim outcome.</p>
+          <div class="blog-meta"><span>5 min read</span></div>
+        </div>
+      </a>
+
+      <a href="blog/what-does-aop-deductible-mean.html" class="blog-card reveal delay-2">
+        <div class="blog-card-img">
+          <div class="blog-card-img-placeholder">
+            <svg class="blog-svg-icon" viewBox="0 0 64 64" fill="none">
+              <path d="M19 10H39L49 20V54H19V10Z" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>
+              <path d="M39 10V20H49" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>
+              <path d="M26 30H42M26 37H42M26 44H36" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+        </div>
+        <div class="blog-card-body">
+          <span class="blog-tag">Policy Deep Dive</span>
+          <h3>What Does AOP Deductible Mean and How Does It Affect Your Claim?</h3>
+          <p>All-other-perils deductibles confuse most policyholders. Here is what you need to know before damage happens.</p>
+          <div class="blog-meta"><span>4 min read</span></div>
+        </div>
+      </a>
+
+      <a href="blog/how-to-request-a-supplement.html" class="blog-card reveal delay-3">
+        <div class="blog-card-img">
+          <div class="blog-card-img-placeholder">
+            <svg class="blog-svg-icon" viewBox="0 0 64 64" fill="none">
+              <path d="M18 11H44V53H18V11Z" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>
+              <path d="M25 22H37M25 29H37M25 36H32" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+              <path d="M39 44L51 32L55 36L43 48L37 50L39 44Z" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </div>
+        <div class="blog-card-body">
+          <span class="blog-tag">Negotiation</span>
+          <h3>How to Request a Supplement on Your Insurance Claim</h3>
+          <p>A supplement is not a fight. It is a documented request for what your policy covers. Learn how to ask the right way.</p>
+          <div class="blog-meta"><span>6 min read</span></div>
+        </div>
+      </a>
+
     </div>
   </div>
-
-  <div class="blog-card-body">
-    <span class="blog-tag">Claims 101</span>
-
-    <h3>The First 15 Things to Do After Home Damage</h3>
-
-    <p>
-      What you do in the first hours after property damage directly affects your claim outcome.
-    </p>
-
-    <div class="blog-meta">
-      <span>5 min read</span>
-    </div>
-  </div>
-
-</a>
-
-    <a href="blog/what-does-aop-deductible-mean.html" class="blog-card reveal delay-2">
-  
-  <div class="blog-card-img">
-    <div class="blog-card-img-placeholder">
-      <svg class="blog-svg-icon" viewBox="0 0 64 64" fill="none">
-    <path d="M19 10H39L49 20V54H19V10Z" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>
-    <path d="M39 10V20H49" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>
-    <path d="M26 30H42M26 37H42M26 44H36" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
-  </svg>
-    </div>
-  </div>
-
-  <div class="blog-card-body">
-    <span class="blog-tag">Policy Deep Dive</span>
-
-    <h3>What Does AOP Deductible Mean — and How Does It Affect Your Claim?</h3>
-
-    <p>
-      All-other-perils deductibles confuse most policyholders. Here's what you need to know before damage happens.
-    </p>
-
-    <div class="blog-meta">
-      <span>4 min read</span>
-    </div>
-  </div>
-
-</a>
-
-    <a href="blog/how-to-request-a-supplement.html" class="blog-card reveal delay-3">
-  
-  <div class="blog-card-img">
-    <div class="blog-card-img-placeholder">
-     <svg class="blog-svg-icon" viewBox="0 0 64 64" fill="none">
-    <path d="M18 11H44V53H18V11Z" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>
-    <path d="M25 22H37M25 29H37M25 36H32" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
-    <path d="M39 44L51 32L55 36L43 48L37 50L39 44Z" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>
-  </svg>
-    </div>
-  </div>
-
-  <div class="blog-card-body">
-    <span class="blog-tag">Negotiation</span>
-
-    <h3>How to Request a Supplement on Your Insurance Claim</h3>
-
-    <p>
-      A supplement isn't a fight — it's a documented request for what your policy covers. Learn how to ask the right way.
-    </p>
-
-    <div class="blog-meta">
-      <span>6 min read</span>
-    </div>
-  </div>
-
-</a>
-     
-     </div><!-- /.grid-3 -->
-  </div><!-- /.container -->
 </section>
 
-</main><!-- /main-content -->
+</main>
 
-<!-- ══════════════════════════════════════════════════════════ -->
-<!--  FOOTER                                                   -->
-<!-- ══════════════════════════════════════════════════════════ -->
+<!-- FOOTER -->
 <footer class="site-footer" role="contentinfo">
   <div class="container">
     <div class="footer-grid">
@@ -529,7 +505,7 @@
         <div class="nav-logo" style="margin-bottom:1rem;">
           <span class="logo-text">Claim<span>Educated</span>™</span>
         </div>
-        <p>A policyholder education ecosystem helping homeowners and renters understand their rights, navigate the claims process, and know what they're owed.</p>
+        <p>A policyholder education ecosystem helping homeowners and renters understand their rights and navigate the claims process with confidence.</p>
         <div class="social-links" aria-label="Social media links">
           <a href="https://www.facebook.com/profile.php?id=61574303816598" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="ClaimEducated on Facebook">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
@@ -567,25 +543,24 @@
         </ul>
       </div>
 
- <div>
-  <p class="footer-heading">Stay in the Loop</p>
+      <div>
+        <p class="footer-heading">Stay in the Loop</p>
+        <p style="font-size:0.85rem; margin-bottom:1.25rem;">
+          Get free claim tips, policy insights, and new resources straight to your inbox.
+        </p>
+        <div class="beehiiv-embed">
+          <script
+            async
+            src="https://subscribe-forms.beehiiv.com/v3/loader.js"
+            data-beehiiv-form="7eea2ba2-a231-4841-adf8-0932ccdccb03">
+          </script>
+        </div>
+        <p style="font-size:0.72rem; color:rgba(255,255,255,0.45); margin-top:0.6rem;">
+          No spam. Unsubscribe anytime.
+        </p>
+      </div>
 
-  <p style="font-size:0.85rem; margin-bottom:1.25rem;">
-    Get free claim tips, policy insights, and new resources — straight to your inbox.
-  </p>
-
-  <div class="beehiiv-embed">
-    <script
-      async
-      src="https://subscribe-forms.beehiiv.com/v3/loader.js" 
-      data-beehiiv-form="7eea2ba2-a231-4841-adf8-0932ccdccb03">
-    </script>
-  </div>
-
-  <p style="font-size:0.72rem; color:rgba(255,255,255,0.45); margin-top:0.6rem;">
-    No spam. Unsubscribe anytime.
-  </p>
-</div>
+    </div><!-- /.footer-grid -->
 
     <div class="footer-bottom">
       <p>&copy; <span id="footer-year"></span> ClaimEducated™. All rights reserved. | <em>Insurance claims made simple.</em></p>
