@@ -789,6 +789,26 @@ p { max-width: 68ch; }
   color: var(--text-muted);
 }
 
+/* ── Featured Blog Card ─────────────────────────────────────── */
+.featured-blog-card {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 340px;
+}
+
+@media (max-width: 768px) {
+  .featured-blog-card {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+
+  .featured-blog-image {
+    min-height: 220px;
+    max-height: 260px;
+    display: block;
+  }
+}
+
 /* ── Featured Blog Image ───────────────────────────────────── */
 .featured-blog-image {
   position: relative;
@@ -1080,6 +1100,33 @@ p { max-width: 68ch; }
   box-shadow: 0 20px 45px rgba(18,38,63,0.28);
 }
 
+/* ── Educational Note Grid (Founder page) ──────────────────── */
+.educational-note-grid {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 2.5rem;
+  align-items: start;
+}
+
+@media (max-width: 600px) {
+  .educational-note-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
+
+/* ── Trust Bar Font Fix ─────────────────────────────────────── */
+/* Force body font on all trust bar spans regardless of inherited classes */
+[aria-label="Trusted policyholder education"] span {
+  font-family: var(--font-body);
+}
+
+/* ── Beehiiv Embed Container ───────────────────────────────── */
+.beehiiv-embed {
+  width: 100%;
+  min-height: 60px;
+}
+
 /* ── Animations ────────────────────────────────────────────── */
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(24px); }
@@ -1177,10 +1224,45 @@ p { max-width: 68ch; }
   .about-grid   { grid-template-columns: 1fr; }
   .qa-card      { grid-column: auto; max-width: 100%; }
 
-  /* Featured blog card stacks vertically on mobile */
+  /* Fix 1: Beehiiv embed footer column — give it breathing room on mobile */
+  .beehiiv-embed {
+    min-height: 80px;
+    width: 100%;
+  }
+
+  /* Fix 2: CTA button text wrapping on mobile — allow wrap and full width */
+  .btn {
+    white-space: normal;
+    text-align: center;
+    line-height: 1.3;
+  }
+
+  .btn-lg {
+    width: 100%;
+    justify-content: center;
+    padding: 1rem 1.5rem;
+  }
+
+  /* Fix 3: Founder Educational Note two-column grid collapses on mobile */
+  .card [style*="grid-template-columns: 220px 1fr"] {
+    display: block !important;
+  }
+
+  /* Fix 4: Trust bar font — force body font on all spans inside the trust bar section */
+  [aria-label="Trusted policyholder education"] span {
+    font-family: var(--font-body) !important;
+  }
+
+  /* Fix 5: Featured blog image — show as a full-width image below content on mobile */
   .featured-blog-image {
-    min-height: 220px;
-    max-height: 260px;
+    min-height: 200px;
+    max-height: 240px;
+    width: 100%;
+  }
+
+  /* Make the featured blog card stack vertically on mobile */
+  [style*="grid-template-columns:1fr 1fr"][style*="min-height:340px"] {
+    grid-template-columns: 1fr !important;
   }
 
   /* Blog grid single column */
