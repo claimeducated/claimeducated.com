@@ -579,7 +579,7 @@ Rules:
     let lastNetworkErr = null;
     for (let attempt = 0; attempt < 2; attempt++) {
       try {
-        response = await fetch("https://api.anthropic.com/v1/messages", {
+        response = await fetch("claim-analyzer-proxy.claimeducated.workers.dev", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
