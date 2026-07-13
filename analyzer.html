@@ -698,6 +698,10 @@ function sanitizeText(str) {
   // A hyphen surrounded by spaces is being used as parenthetical punctuation
   // (an em-dash substitute) even when told not to. Convert to a comma instead.
   out = out.replace(/\s-\s/g, ', ');
+  // Same issue but with no spaces around the dash (tight em-dash style). A hyphen
+  // directly touching a dollar sign is never a legitimate compound word, so this
+  // is always the punctuation misuse, safe to convert.
+  out = out.replace(/-\$/g, ', $');
   // Idioms like "as high as 80%" need special handling before the general strip below,
   // since blindly removing the adjective leaves a broken "as as 80%".
   out = out.replace(/\bas\s+high\s+as\b/gi, 'up to');
