@@ -692,13 +692,18 @@ function sanitizeText(str) {
   // A hyphen surrounded by spaces is being used as parenthetical punctuation
   // (an em-dash substitute) even when told not to. Convert to a comma instead.
   out = out.replace(/\s-\s/g, ', ');
-  // Strip banned evaluative adjectives before a noun ("High deductible", "large portion"),
-  // since prompt instructions alone aren't reliably preventing this on this model.
+  // Predicate uses ("percentages are high", "amount seems significant") get removed
+  // entirely, verb included, since there's no safe way to strip just the adjective here.
+  out = out.replace(/\s+(?:is|are|seems?|appears?)\s+(?:very\s+)?(large|high|significant|substantial)\b/gi, '');
+  // Adjective-before-noun uses ("a large amount", "High deductible")
   out = out.replace(/\b(very\s+)?(large|high|significant|substantial)\s+(?=[a-z])/gi, '');
-  out = out.replace(/\bgreatly\s+(?=[a-z])/gi, '');
+  out = out.replace(/\b(greatly|significantly)\s+(?=[a-z])/gi, '');
   out = out.replace(/\s*\ba lot\b/gi, '');
   out = out.replace(/\bmuch\s+(?=[a-z])/gi, '');
+  // Fix "a" -> "an" when adjective removal left a mismatched article before a vowel sound
+  out = out.replace(/\ba\s+([aeiouAEIOU])/g, 'an $1');
   out = out.replace(/\s{2,}/g, ' ').trim();
+  out = out.replace(/\s+([.,;:])/g, '$1');
   if (out.length > 0) out = out.charAt(0).toUpperCase() + out.slice(1);
   return out;
 }
