@@ -553,7 +553,11 @@ How to write it:
 - Red flag titles should sound like something a person would actually say out loud, but stay plain and factual, not dramatic. Avoid emotionally charged phrasing like "gone for good," "completely unresolved," or anything that sounds like a headline. Just name what's happening: "This depreciation isn't recoverable" instead of "Over $4,600 is gone for good." "The solar panel cost hasn't been determined yet" instead of "Solar panels are completely unresolved."
 - Questions should be phrased exactly as the homeowner would say them to their insurer on the phone, not as formal requests.
 - Match the precision of the source document. If it refers to specific materials or components (e.g. "metal roof materials" or "metal flashing"), use that exact term rather than generalizing to something broader like "the metal roof" or "your roof," which can misstate what's actually being discussed. Don't assume the whole system or structure is involved when the document only refers to part of it.
+- Never use em dashes, en dashes, or any dash character as punctuation to set off a phrase (e.g. "the payment now – $3,567 – after depreciation"). Use commas, parentheses, or split into two sentences instead. This applies everywhere in your response, not just between clauses.
+- Cap it at two dollar figures per sentence, no exceptions. If a sentence naturally wants three or more numbers (like a cost estimate, an ACV payment, and a deductible together), split it into two separate sentences rather than finding a way to fit them all in one.
+- Never use evaluative words like "large," "high," "seem high," "significant," or "substantial" to describe any dollar amount or percentage, not just deductibles. This applies to every number in your response. State the number and let the homeowner judge its size themselves.
 - Specifically: "metal roof materials" on an estimate typically refers to components like vents, pipe jacks, valley metal, and flashing, not an actual metal roof surface. Never shorten it to "the metal roof" or "metal roofing," even later in the same response or in a title. Always write out "metal roof materials" in full, every time.
+- The "metal roof materials" rule applies to titles too, without exception. "Metal roof marring not covered without a hole" is wrong because it drops "materials." It must read something like "Metal roof materials marring not covered without a hole" or restructure the title to avoid needing the phrase shortened at all.
 - Don't repeat the same noun phrase multiple times in one paragraph for emphasis. Say it once clearly, then use "it," "that," or a short pronoun reference afterward.
 - Avoid vague hedge phrases like "may need more proof" or "might require documentation" without saying what proof or documentation specifically. If you're not sure what's needed, turn it into a direct question instead of a vague statement.
 - Use only standard keyboard hyphens (-) for compound words like "long-term" or "re-inspection." Do not use any other dash or hyphen character.
@@ -642,13 +646,13 @@ Rules:
       throw new Error("The analysis came back in an unexpected format. Please try again.");
     }
 
-    summaryTextEl.textContent = parsed.summary || "";
+    summaryTextEl.textContent = sanitizeText(parsed.summary) || "";
 
     flagsListEl.innerHTML = "";
     (parsed.redFlags || []).forEach(flag => {
       const div = document.createElement('div');
       div.className = 'flag';
-      div.innerHTML = `<div class="flag-title">${escapeHtml(flag.title)}</div><div class="flag-body">${escapeHtml(flag.body)}</div>`;
+      div.innerHTML = `<div class="flag-title">${escapeHtml(sanitizeText(flag.title))}</div><div class="flag-body">${escapeHtml(sanitizeText(flag.body))}</div>`;
       flagsListEl.appendChild(div);
     });
 
@@ -656,7 +660,7 @@ Rules:
     (parsed.questions || []).forEach(q => {
       const div = document.createElement('div');
       div.className = 'qitem';
-      div.textContent = q;
+      div.textContent = sanitizeText(q);
       questionsListEl.appendChild(div);
     });
 
@@ -677,6 +681,13 @@ function escapeHtml(str) {
   const div = document.createElement('div');
   div.textContent = str;
   return div.innerHTML;
+}
+
+function sanitizeText(str) {
+  if (!str) return str;
+  // Force any non-standard hyphen/dash characters to a plain ASCII hyphen,
+  // since some models use these regardless of prompt instructions.
+  return str.replace(/[\u2010\u2011\u2012\u2013\u2014\u2015]/g, '-');
 }
 
 function trackEvent(name, params) {
