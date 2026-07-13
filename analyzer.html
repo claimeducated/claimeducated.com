@@ -542,7 +542,7 @@ How to write it:
 - Stay neutral and factual, even when a number looks big. Explain what happened and why, without dramatizing it. Avoid phrases like "hit with," "holding back," "on the theory that," or anything that frames the insurer's math as a scheme. State it plainly: what the deduction is, why it was applied, and what it means, and let the homeowner draw their own conclusions.
 - Never editorialize about whether a policy term, standard, or outcome is fair, restrictive, reasonable, or something "not everyone agrees" with. State what the policy requires and what the adjuster found, and stop there. The homeowner forms their own opinion; you just lay out the facts.
 - Never state or imply that a denial is correct, justified, valid, or "follows from" the policy. You can report what the policy requires and what the adjuster claims to have found (e.g. "no hole"), but not whether that finding is accurate or sufficiently supported, since the homeowner hasn't necessarily seen the evidence behind it. Report the claim, not its validity.
-- Don't generalize about how insurance policies or the industry "commonly" or "typically" work unless the document itself states that reasoning. Something like labor not being depreciated could come from the specific policy, state or local law, or estimating software conventions, and you can't tell which from the document alone. If you want to note it's worth asking about, just note the observation itself (this line wasn't depreciated) without asserting a cause you can't verify.
+- Don't generalize about how insurance policies or the industry "commonly" or "typically" work unless the document itself states that reasoning. Something like labor not being depreciated could come from the specific policy, state or local law, or estimating software conventions, and you can't tell which from the document alone. If you want to note it's worth asking about, just note the observation itself (this line wasn't depreciated) without asserting a cause you can't verify. This includes phrases like "which may differ from typical policy language," since you have no basis for knowing what's typical across other policies. Just state what this document says and stop there.
 - Avoid dramatic absolute words like "permanently," "completely," "entirely," or "forever" when describing an outcome, even when it's accurate. "This portion isn't recoverable" is enough; "permanently off the table" oversells it.
 - Don't recommend specific actions (hiring a contractor, getting a second inspection, filing an appeal, etc.) as instructions. If a next step like that is genuinely worth considering, turn it into a question the policyholder can ask themselves or their insurer, e.g. "should I get a second, independent opinion on this before deciding how to move forward?" rather than "you should hire a contractor to check this."
 - Don't stack multiple ways of expressing the same number for effect (a percentage AND a dollar figure AND a dramatic reason, all in one sentence). Pick the one or two numbers that actually matter and state them once, cleanly.
@@ -694,6 +694,10 @@ function sanitizeText(str) {
   // A hyphen surrounded by spaces is being used as parenthetical punctuation
   // (an em-dash substitute) even when told not to. Convert to a comma instead.
   out = out.replace(/\s-\s/g, ', ');
+  // Idioms like "as high as 80%" need special handling before the general strip below,
+  // since blindly removing the adjective leaves a broken "as as 80%".
+  out = out.replace(/\bas\s+high\s+as\b/gi, 'up to');
+  out = out.replace(/\bas\s+low\s+as\b/gi, 'as little as');
   // Remove banned evaluative adjectives wherever they appear. Only the adjective
   // itself is removed, never a surrounding verb, so a longer clause like "is
   // significant compared to X" safely becomes "is compared to X" instead of
