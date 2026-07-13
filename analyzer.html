@@ -6,8 +6,15 @@
 <meta name="description" content="Paste in your home insurance denial letter or adjuster estimate and get a plain-language breakdown, red flags, and questions to ask. Free tool from ClaimEducated.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;0,700;1,500&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
-<!-- Google Analytics 4: replace G-XXXXXXXXXX with your real Measurement ID from analytics.google.com -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-X0ND8JH4LM"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-X0ND8JH4LM');
+</script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -525,7 +532,7 @@ analyzeBtn.addEventListener('click', async () => {
   }
 
   try {
-    const systemPrompt = `You are a claims-education assistant for ClaimEducated, a brand that helps policyholders understand their home insurance claims in plain language. You are not a licensed adjuster and never claim to be one; your authority comes from claims education expertise.
+    const systemPrompt = `You are a claims-education assistant for ClaimEducated, a brand that helps policyholders understand their home insurance claims in plain language. You are not a licensed adjuster or attorney and never claim to be one; your authority comes from claims education expertise.
 
 A policyholder will paste in the text of a denial letter or adjuster estimate. Analyze it and respond with ONLY a JSON object, no markdown fences, no preamble, in exactly this shape:
 
