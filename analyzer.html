@@ -561,6 +561,689 @@ How to write it:
 - The "metal roof materials" rule applies to titles too, without exception. "Metal roof marring not covered without a hole" is wrong because it drops "materials." It must read something like "Metal roof materials marring not covered without a hole" or restructure the title to avoid needing the phrase shortened at all.
 - Don't repeat the same noun phrase multiple times in one paragraph for emphasis. Say it once clearly, then use "it," "that," or a short pronoun reference afterward.
 - Avoid vague hedge phrases like "may need more proof" or "might require documentation" without saying what proof or documentation specifically. If you're not sure what's needed, turn it into a direct question instead of a vague statement.
+- Never use a vague amount descriptor like "a small amount," "a certain amount," or "some depreciation" when the specific number is available in the document. If you know the number, state it, even if you're also stating other numbers nearby.
+- Use only standard keyboard hyphens (-) for compound words like "long-term" or "re-inspection." Do not use any other dash or hyphen character.
+
+Depreciation specifically:
+- Any time the document withholds money for depreciation (age-based deductions, ACV payouts, "recoverable depreciation" holdbacks), say plainly whether that depreciation appears recoverable once repairs are completed, appears non-recoverable, or is unclear from what was pasted in.
+- Adjuster estimates commonly mark depreciation figures with a specific notation: an amount in angle brackets, like <$500.00>, means that amount is non-recoverable. An amount in parentheses, like ($500.00), means that amount is recoverable. Read this notation carefully line by line and attribute recoverable versus non-recoverable status to the exact line item it's attached to, don't assume the largest or most prominent line item is the recoverable or non-recoverable one without checking its actual notation.
+- If it's unclear, don't guess. Say it's unclear and add a specific question about it to the questions list, e.g. asking whether the withheld depreciation can be recovered after repairs are finished and what's needed to claim it.
+- Never state a dollar amount is permanently lost unless the document actually says the depreciation is non-recoverable.
+
+Deductible specifically:
+- Don't describe a deductible as "unusually high" or make any comparison to what's typical, since you have no basis for that comparison. Just report the numbers.
+- Instead, frame it around what the homeowner is actually paying out of pocket right now versus what becomes available later. State the deductible amount, what's being paid now (typically the ACV amount minus the deductible), and how much of the repair cost the homeowner is covering themselves as a result.
+- If there's a recoverable depreciation amount (the gap between ACV and RCV) that becomes available once repairs are completed, say so clearly as a separate, later payment, not as money the homeowner has now.
+
+Rules:
+- Never use em dashes anywhere in your response.
+- Include 2-5 red flags. Only include real ones grounded in the text; do not invent issues that aren't supported by what was pasted in.
+- Include 4-6 questions, each specific to details actually in the document (cite the policy section, dollar amount, or reason given where relevant, but in plain language).
+- Do not give legal advice or tell the policyholder what to do; frame everything as questions and information, not instructions.
+- Respond with the JSON object only. Nothing before it, nothing after it.`;
+
+    let response;
+    let rawResponseText = "";
+    let lastNetworkErr = null;
+    for (let attempt = 0; attempt < 2; attempt++) {
+      try {
+        response = await fetch("https://claim-analyzer-proxy.claimeducated.workers.dev", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            system: systemPrompt,
+            messages: [
+              { role: "user", content: text }
+            ]
+          })
+        });
+        rawResponseText = await response.text();
+        if (rawResponseText.trim() !== "") break;
+      } catch (networkErr) {
+        lastNetworkErr = networkErr;
+      }
+    }
+
+    if (!response || rawResponseText.trim() === "") {
+      throw new Error("The request timed out before a response came back, even after retrying. This isn't about document length, just a slow connection. Please try again in a moment.");
+    }
+
+    if (!response.ok) {
+      let detail = "";
+      try {
+        const errBody = JSON.parse(rawResponseText);
+        detail = errBody?.error?.message ? ": " + errBody.error.message : "";
+      } catch (_) {}
+      throw new Error("The analysis request failed (" + response.status + ")" + detail);
+    }
+
+    let data;
+    try {
+      data = JSON.parse(rawResponseText);
+    } catch (parseErr) {
+      console.error("Raw response body:", rawResponseText.slice(0, 500));
+      throw new Error("The response came back in an unexpected format. Please try again.");
+    }
+
+    const textBlock = (data.content || []).find(b => b.type === "text");
+    if (!textBlock || !textBlock.text) {
+      throw new Error("No analysis text came back. Please try again.");
+    }
+
+    // Pull out the JSON object even if the model added stray text around it
+    const rawText = textBlock.text.trim();
+    const firstBrace = rawText.indexOf("{");
+    const lastBrace = rawText.lastIndexOf("}");
+    if (firstBrace === -1 || lastBrace === -1 || lastBrace < firstBrace) {
+      console.error("Raw model output:", rawText);
+      throw new Error("The analysis didn't come back in the expected format. Please try again.");
+    }
+    const jsonSlice = rawText.slice(firstBrace, lastBrace + 1);
+
+    let parsed;
+    try {
+      parsed = JSON.parse(jsonSlice);
+    } catch (jsonErr) {
+      console.error("Failed to parse:", jsonSlice);
+      throw new Error("The analysis came back in an unexpected format. Please try again.");
+    }
+
+    summaryTextEl.textContent = sanitizeText(parsed.summary) || "";
+
+    flagsListEl.innerHTML = "";
+    (parsed.redFlags || []).forEach(flag => {
+      const div = document.createElement('div');
+      div.className = 'flag';
+      div.innerHTML = `<div class="flag-title">${escapeHtml(sanitizeText(flag.title))}</div><div class="flag-body">${escapeHtml(sanitizeText(flag.body))}</div>`;
+      flagsListEl.appendChild(div);
+    });
+
+    questionsListEl.innerHTML = "";
+    (parsed.questions || []).forEach(q => {
+      const div = document.createElement('div');
+      div.className = 'qitem';
+      div.textContent = sanitizeText(q);
+      questionsListEl.appendChild(div);
+    });
+
+    resultsEl.style.display = 'block';
+    trackEvent('analyze_document_success', { flag_count: (parsed.redFlags || []).length });
+  } catch (err) {
+    console.error(err);
+    errorEl.textContent = err.message || "Something went wrong. Please try again.";
+    errorEl.style.display = 'block';
+    trackEvent('analyze_document_error', { message: (err.message || 'unknown').slice(0, 100) });
+  } finally {
+    analyzeBtn.disabled = false;
+    loadingEl.style.display = 'none';
+  }
+});
+
+function escapeHtml(str) {
+  const div = document.createElement('div');
+  div.textContent = str;
+  return div.innerHTML;
+}
+
+function sanitizeText(str) {
+  if (!str) return str;
+  let out = str;
+  // Force any non-standard hyphen/dash characters to a plain ASCII hyphen,
+  // since some models use these regardless of prompt instructions.
+  out = out.replace(/[\u2010\u2011\u2012\u2013\u2014\u2015]/g, '-');
+  // A hyphen surrounded by spaces is being used as parenthetical punctuation
+  // (an em-dash substitute) even when told not to. Convert to a comma instead.
+  out = out.replace(/\s-\s/g, ', ');
+  // Predicate uses ("percentages are high", "amount seems significant") get removed
+  // entirely, verb included, since there's no safe way to strip just the adjective here.
+  out = out.replace(/\s+(?:is|are|seems?|appears?)\s+(?:very\s+)?(large|high|low|significant|substantial)\b/gi, '');
+  // Adjective-before-noun uses ("a large amount", "High deductible")
+  out = out.replace(/\b(very\s+)?(large|high|low|significant|substantial)\s+(?=[a-z])/gi, '');
+  out = out.replace(/\b(greatly|significantly|heavily)\s+(?=[a-z])/gi, '');
+  out = out.replace(/\s*\ba lot\b/gi, '');
+  out = out.replace(/\bmuch\s+(?=[a-z])/gi, '');
+  // Fix "a" -> "an" when adjective removal left a mismatched article before a vowel sound
+  out = out.replace(/\ba\s+([aeiouAEIOU])/g, 'an $1');
+  out = out.replace(/\s{2,}/g, ' ').trim();
+  out = out.replace(/\s+([.,;:])/g, '$1');
+  if (out.length > 0) out = out.charAt(0).toUpperCase() + out.slice(1);
+  return out;
+}
+
+function trackEvent(name, params) {
+  if (typeof gtag === 'function') {
+    gtag('event', name, params || {});
+  }
+}
+</script>
+</body>
+</html>    line-height: 1.5;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 0 24px 80px;
+  }
+  .site-nav {
+    background: var(--paper);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-inner {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+  }
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+  }
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 26px;
+    flex-wrap: wrap;
+  }
+  .nav-links a {
+    font-size: 14px;
+    color: var(--navy);
+    text-decoration: none;
+    font-weight: 500;
+  }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-cta {
+    background: var(--navy);
+    color: var(--cream) !important;
+    padding: 10px 18px;
+    border-radius: 4px;
+    font-weight: 600 !important;
+  }
+  .nav-cta:hover { background: var(--navy-deep); color: var(--cream) !important; }
+  .hero {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 48px 24px 0;
+  }
+  .eyebrow-top {
+    font-family: 'Lora', serif;
+    font-weight: 700;
+    font-size: 12.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 14px;
+  }
+  .claim-tags {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin: 20px 0 8px;
+  }
+  .claim-tag {
+    font-family: 'Lora', serif;
+    font-size: 12.5px;
+    font-weight: 600;
+    padding: 5px 12px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    color: var(--slate);
+  }
+  .claim-tag.active {
+    background: var(--navy);
+    color: var(--cream);
+    border-color: var(--navy);
+  }
+  .site-footer {
+    background: var(--navy);
+    color: var(--cream);
+    margin-top: 56px;
+    padding: 48px 24px 28px;
+  }
+  .footer-inner {
+    max-width: 1080px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    justify-content: space-between;
+  }
+  .footer-brand { max-width: 320px; }
+  .footer-brand .brand span { color: var(--gold-light); }
+  .footer-brand p {
+    font-size: 13.5px;
+    color: #C7CEDB;
+    margin-top: 12px;
+    line-height: 1.6;
+  }
+  .footer-col h4 {
+    font-family: 'Lora', serif;
+    font-size: 13px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    margin: 0 0 14px;
+  }
+  .footer-col a {
+    display: block;
+    font-size: 13.5px;
+    color: #C7CEDB;
+    text-decoration: none;
+    margin-bottom: 10px;
+  }
+  .footer-col a:hover { color: var(--cream); }
+  .footer-bottom {
+    max-width: 1080px;
+    margin: 32px auto 0;
+    padding-top: 20px;
+    border-top: 1px solid rgba(247,244,236,0.15);
+    font-size: 12.5px;
+    color: #9AA5BC;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  @media (max-width: 700px) {
+    .nav-links { display: none; }
+  }
+  .masthead {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 8px;
+  }
+  .mark {
+    width: 40px;
+    height: 40px;
+    border: 2px solid var(--navy);
+    border-radius: 2px;
+    position: relative;
+    flex-shrink: 0;
+  }
+  .mark::before {
+    content: "";
+    position: absolute;
+    left: 8px;
+    top: 8px;
+    right: 8px;
+    height: 2px;
+    background: var(--gold);
+  }
+  .mark::after {
+    content: "";
+    position: absolute;
+    left: 8px;
+    top: 16px;
+    width: 14px;
+    height: 2px;
+    background: var(--navy);
+    box-shadow: 0 6px 0 var(--navy);
+  }
+  .brand {
+    font-family: 'Lora', serif;
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--navy);
+  }
+  .brand span { color: var(--gold); }
+  h1 {
+    font-family: 'Lora', serif;
+    font-weight: 600;
+    font-size: 34px;
+    line-height: 1.2;
+    color: var(--navy);
+    margin: 24px 0 10px;
+  }
+  .sub {
+    color: var(--slate);
+    font-size: 16px;
+    max-width: 56ch;
+    margin-bottom: 36px;
+  }
+  .panel {
+    background: var(--paper);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 28px;
+  }
+  label {
+    display: block;
+    font-family: 'Lora', serif;
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--navy);
+    margin-bottom: 8px;
+  }
+  .hint {
+    font-size: 13px;
+    color: var(--slate);
+    margin-bottom: 14px;
+  }
+  textarea {
+    width: 100%;
+    min-height: 200px;
+    resize: vertical;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 14px 16px;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 15px;
+    color: var(--ink);
+    background: #FFFFFF;
+  }
+  textarea:focus, button:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 1px;
+  }
+  .row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 18px;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .count { font-size: 12px; color: var(--slate); }
+  button {
+    background: var(--navy);
+    color: var(--cream);
+    border: none;
+    border-radius: 4px;
+    padding: 13px 26px;
+    font-family: 'Source Sans 3', sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background 0.15s ease;
+  }
+  button:hover:not(:disabled) { background: var(--navy-deep); }
+  button:disabled { opacity: 0.55; cursor: not-allowed; }
+  .try {
+    background: none;
+    border: none;
+    color: var(--slate);
+    font-size: 13px;
+    text-decoration: underline;
+    cursor: pointer;
+    padding: 0;
+  }
+  .error {
+    margin-top: 16px;
+    background: var(--rust-bg);
+    border: 1px solid var(--rust);
+    color: var(--rust);
+    padding: 12px 16px;
+    border-radius: 4px;
+    font-size: 14px;
+    display: none;
+  }
+  .results { margin-top: 36px; display: none; }
+  .section { margin-bottom: 30px; }
+  .eyebrow {
+    font-family: 'Lora', serif;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+  .summary-text {
+    font-family: 'Lora', serif;
+    font-style: italic;
+    font-size: 18px;
+    line-height: 1.55;
+    color: var(--navy);
+    border-left: 3px solid var(--gold);
+    padding-left: 18px;
+  }
+  .flag {
+    background: var(--rust-bg);
+    border-left: 3px solid var(--rust);
+    border-radius: 0 4px 4px 0;
+    padding: 14px 18px;
+    margin-bottom: 10px;
+  }
+  .flag-title {
+    font-weight: 700;
+    color: var(--rust);
+    font-size: 14.5px;
+    margin-bottom: 4px;
+  }
+  .flag-body { font-size: 14.5px; color: var(--ink); }
+  .qlist { counter-reset: q; }
+  .qitem {
+    counter-increment: q;
+    display: flex;
+    gap: 14px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 15px;
+  }
+  .qitem:last-child { border-bottom: none; }
+  .qitem::before {
+    content: counter(q);
+    font-family: 'Lora', serif;
+    font-weight: 700;
+    color: var(--gold);
+    flex-shrink: 0;
+    width: 22px;
+  }
+  .loading {
+    display: none;
+    align-items: center;
+    gap: 10px;
+    margin-top: 18px;
+    color: var(--slate);
+    font-size: 14px;
+  }
+  .spinner {
+    width: 16px; height: 16px;
+    border: 2px solid var(--border);
+    border-top-color: var(--gold);
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .foot {
+    margin-top: 40px;
+    font-size: 12.5px;
+    color: var(--slate);
+    text-align: center;
+  }
+  @media (max-width: 600px) {
+    h1 { font-size: 27px; }
+    .panel { padding: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="nav-inner">
+    <a class="nav-logo" href="https://claimeducated.com/index.html">
+      <div class="mark"></div>
+      <div class="brand">Claim<span>Educated</span></div>
+    </a>
+    <div class="nav-links">
+      <a href="https://claimeducated.com/index.html">Home</a>
+      <a href="https://claimeducated.com/resources.html">The Library</a>
+      <a href="https://claimeducated.com/shop.html">Shop</a>
+      <a href="https://claimeducated.com/blog.html">Blog</a>
+      <a href="https://claimeducated.com/contact.html">Contact</a>
+      <a class="nav-cta" href="https://calendly.com/claimeducated/free-claim-qa">Free Q&amp;A Call</a>
+    </div>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="eyebrow-top">Part of the CLAIM™ Framework</div>
+  <h1>Claim Document Analyzer</h1>
+  <p class="sub">Paste in a denial letter or adjuster estimate. You'll get a plain-language read on what it says, the spots worth questioning, and exactly what to ask next, the same way the Analyze and Inquire steps work in the CLAIM™ system.</p>
+  <div class="claim-tags">
+    <div class="claim-tag">Capture</div>
+    <div class="claim-tag">Log</div>
+    <div class="claim-tag active">Analyze</div>
+    <div class="claim-tag active">Inquire</div>
+    <div class="claim-tag">Manage</div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <div class="panel">
+    <label for="input">Denial letter or adjuster estimate</label>
+    <p class="hint">Copy and paste the full text below.</p>
+    <textarea id="input" placeholder="Paste the letter or estimate text here..."></textarea>
+    <div class="row">
+      <button class="try" id="tryExample" type="button">Use a sample letter instead</button>
+      <button id="analyzeBtn" type="button">Analyze document</button>
+    </div>
+    <div class="loading" id="loading"><div class="spinner"></div><span class="loading-text">Reading through it...</span></div>
+    <div class="error" id="error"></div>
+  </div>
+
+  <div class="results" id="results">
+    <div class="section">
+      <div class="eyebrow">What this means</div>
+      <div class="summary-text" id="summaryText"></div>
+    </div>
+    <div class="section">
+      <div class="eyebrow">Red flags worth a closer look</div>
+      <div id="flagsList"></div>
+    </div>
+    <div class="section">
+      <div class="eyebrow">Questions to ask</div>
+      <div class="qlist" id="questionsList"></div>
+    </div>
+  </div>
+
+  <div class="foot">This is educational information, not legal or claims-adjusting advice. For guidance specific to your policy, consult your insurer or a licensed professional.</div>
+</div>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="brand">Claim<span>Educated</span></div>
+      <p>A policyholder education ecosystem helping homeowners and renters understand their rights and navigate the claims process with confidence.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Navigate</h4>
+      <a href="https://claimeducated.com/index.html">Home</a>
+      <a href="https://claimeducated.com/about.html">About</a>
+      <a href="https://claimeducated.com/founder.html">Founder</a>
+      <a href="https://claimeducated.com/resources.html">The Library</a>
+      <a href="https://claimeducated.com/blog.html">Blog</a>
+    </div>
+    <div class="footer-col">
+      <h4>Next Step</h4>
+      <a href="https://calendly.com/claimeducated/free-claim-qa">Book a Free Q&amp;A Call</a>
+      <a href="https://claimeducated.com/shop.html#toolkit">View the Toolkit</a>
+      <a href="https://claimeducated.com/resources.html#guides">Free Guides</a>
+      <a href="https://claimeducated.com/contact.html">Contact</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; ClaimEducated&trade;. All rights reserved. | Insurance claims made simple.</span>
+    <span><a href="https://claimeducated.com/privacy.html" style="color:#9AA5BC;">Privacy</a> &middot; <a href="https://claimeducated.com/disclaimer.html" style="color:#9AA5BC;">Disclaimer</a></span>
+  </div>
+</footer>
+
+<script>
+const SAMPLE_LETTER = `Dear Policyholder,
+
+This letter is to inform you that your claim (Claim #HO-2026-04471) for water damage reported on your property has been reviewed. After inspection, we have determined that the damage is a result of long-term seepage and wear, which falls under the exclusion listed in Section I, Exclusion 3(b) of your policy for damage caused by continuous or repeated seepage of water over a period of time.
+
+As such, your claim for the repair of the affected drywall, flooring, and cabinetry in the amount of $14,200 has been denied.
+
+You may request a re-inspection within 30 days of this letter if you have additional documentation to support your claim.
+
+Sincerely,
+Claims Department`;
+
+const inputEl = document.getElementById('input');
+const analyzeBtn = document.getElementById('analyzeBtn');
+const tryExampleBtn = document.getElementById('tryExample');
+const loadingEl = document.getElementById('loading');
+const errorEl = document.getElementById('error');
+const resultsEl = document.getElementById('results');
+const summaryTextEl = document.getElementById('summaryText');
+const flagsListEl = document.getElementById('flagsList');
+const questionsListEl = document.getElementById('questionsList');
+
+tryExampleBtn.addEventListener('click', () => {
+  inputEl.value = SAMPLE_LETTER;
+});
+
+analyzeBtn.addEventListener('click', async () => {
+  const text = inputEl.value.trim();
+  errorEl.style.display = 'none';
+  resultsEl.style.display = 'none';
+
+  if (!text) {
+    errorEl.textContent = 'Paste in the letter or estimate text first.';
+    errorEl.style.display = 'block';
+    return;
+  }
+
+  if (text.length > 40000) {
+    errorEl.textContent = 'That\'s a very long document. Try pasting just the summary, the stated reasoning, and the line items in question, and analyze again.';
+    errorEl.style.display = 'block';
+    return;
+  }
+
+  analyzeBtn.disabled = true;
+  loadingEl.style.display = 'flex';
+  trackEvent('analyze_document_click', { doc_length: text.length });
+  const loadingText = loadingEl.querySelector('.loading-text');
+  if (loadingText) {
+    loadingText.textContent = text.length > 8000 ? 'This is a longer document, give it a moment...' : 'Reading through it...';
+  }
+
+  try {
+    const systemPrompt = `You are a claims-education assistant for ClaimEducated, a brand that helps policyholders understand their home insurance claims in plain language. You are not a licensed adjuster and never claim to be one; your authority comes from claims education expertise.
+
+A policyholder will paste in the text of a denial letter or adjuster estimate. Analyze it and respond with ONLY a JSON object, no markdown fences, no preamble, in exactly this shape:
+
+{
+  "summary": "2-3 sentences in plain, warm, non-legal language explaining what the letter actually says and what it means for the policyholder.",
+  "redFlags": [
+    {"title": "short flag title, a few words", "body": "one clear sentence explaining why this is worth questioning"}
+  ],
+  "questions": ["a specific, direct question the policyholder should ask their insurer or adjuster", "..."]
+}
+
+How to write it:
+- Write like you're explaining this out loud to a homeowner at their kitchen table, not summarizing a legal document. Short sentences. Everyday words.
+- Stay neutral and factual, even when a number looks big. Explain what happened and why, without dramatizing it. Avoid phrases like "hit with," "holding back," "on the theory that," or anything that frames the insurer's math as a scheme. State it plainly: what the deduction is, why it was applied, and what it means, and let the homeowner draw their own conclusions.
+- Never editorialize about whether a policy term, standard, or outcome is fair, restrictive, reasonable, or something "not everyone agrees" with. State what the policy requires and what the adjuster found, and stop there. The homeowner forms their own opinion; you just lay out the facts.
+- Never state or imply that a denial is correct, justified, valid, or "follows from" the policy. You can report what the policy requires and what the adjuster claims to have found (e.g. "no hole"), but not whether that finding is accurate or sufficiently supported, since the homeowner hasn't necessarily seen the evidence behind it. Report the claim, not its validity.
+- Don't generalize about how insurance policies or the industry "commonly" or "typically" work unless the document itself states that reasoning. Something like labor not being depreciated could come from the specific policy, state or local law, or estimating software conventions, and you can't tell which from the document alone. If you want to note it's worth asking about, just note the observation itself (this line wasn't depreciated) without asserting a cause you can't verify.
+- Avoid dramatic absolute words like "permanently," "completely," "entirely," or "forever" when describing an outcome, even when it's accurate. "This portion isn't recoverable" is enough; "permanently off the table" oversells it.
+- Don't recommend specific actions (hiring a contractor, getting a second inspection, filing an appeal, etc.) as instructions. If a next step like that is genuinely worth considering, turn it into a question the policyholder can ask themselves or their insurer, e.g. "should I get a second, independent opinion on this before deciding how to move forward?" rather than "you should hire a contractor to check this."
+- Don't stack multiple ways of expressing the same number for effect (a percentage AND a dollar figure AND a dramatic reason, all in one sentence). Pick the one or two numbers that actually matter and state them once, cleanly.
+- Cap it at two dollar figures per sentence. If a point genuinely involves three or more numbers, split it across two sentences or two separate red flags instead of packing them all into one dense sentence.
+- Swap insurance vocabulary for everyday words even when the word itself isn't obscure: "dwelling" becomes "your house" or "the house itself," "withheld" or "held back" becomes "not paid to you," "recoverable depreciation" becomes "money you can still get back," "the insured" becomes "you." Use the plain version throughout, not just on first mention.
+- If the letter uses insurance or legal terms (exclusion, seepage, betterment, ACV, endorsement, proof of loss, etc.), translate them into plain English immediately instead of repeating the jargon. Say what the word means in the same breath you use it, e.g. "they're calling this 'wear and tear,' basically saying it happened slowly over time rather than all at once."
+- Avoid words like "aforementioned," "pursuant to," "the insured," "constitutes," "rises to that level," "meets the threshold," "satisfies the standard," or any phrase you'd only see in a policy document or legal letter. Say "you" and "your policy," not "the insured" or "the policyholder's coverage." Say "counts as" or "qualifies as" instead of "rises to the level of."
+- Red flag titles should sound like something a person would actually say out loud, but stay plain and factual, not dramatic. Avoid emotionally charged phrasing like "gone for good," "completely unresolved," or anything that sounds like a headline. Just name what's happening: "This depreciation isn't recoverable" instead of "Over $4,600 is gone for good." "The solar panel cost hasn't been determined yet" instead of "Solar panels are completely unresolved."
+- Questions should be phrased exactly as the homeowner would say them to their insurer on the phone, not as formal requests.
+- Match the precision of the source document. If it refers to specific materials or components (e.g. "metal roof materials" or "metal flashing"), use that exact term rather than generalizing to something broader like "the metal roof" or "your roof," which can misstate what's actually being discussed. Don't assume the whole system or structure is involved when the document only refers to part of it.
+- Never use em dashes, en dashes, or any dash character as punctuation to set off a phrase (e.g. "the payment now – $3,567 – after depreciation"). Use commas, parentheses, or split into two sentences instead. This applies everywhere in your response, not just between clauses.
+- Cap it at two dollar figures per sentence, no exceptions, EXCEPT for a single arithmetic breakdown chain for ONE property (starting cost, minus depreciation, minus deductible, equals payment, which is four numbers total), where splitting it awkwardly is more confusing than clearer. This exception covers ONLY that one calculation for ONE structure. If the document has a second structure (like a shed or other structures) with its own payment, that gets its own separate sentence, never combined into the same sentence as the first structure's numbers. Do not also fold in a deductible discount breakdown (like an original deductible minus an award), a recoverable depreciation amount, or any other figure into that same sentence, even if it feels related, even by joining with a semicolon. Each of those gets its own separate sentence, ended with a period. If the original deductible was reduced by an award (like a Declining Deductibles award), that itself is a separate two-number sentence: state the original deductible and the reduced deductible together if needed, but never add the award amount as a third number in that same sentence, and never combine it with the property's cost/depreciation/payment chain. Never use any of these exceptions outside the summary section.
+- This exact pattern keeps happening, so here is the specific fix: WRONG: "After applying the $200 Declining Deductibles award, your deductible was reduced to $5,840, so the net payment you received was $1,505.42." (three figures, one sentence). RIGHT: "A $200 Declining Deductibles award reduced your deductible to $5,840. After that deductible and depreciation were subtracted, your net payment was $1,505.42." (two sentences, two figures each). The word "so" or "therefore" connecting a deductible number to a payment number in the same sentence is the tell that this rule is being broken; if you're about to write "so" or "therefore" right before a new dollar figure, stop and start a new sentence instead.
+- Never use evaluative words like "large," "high," "seem high," "significant," or "substantial" to describe any dollar amount or percentage, not just deductibles. This applies to every number in your response, AND IT APPLIES TO TITLES ESPECIALLY, since titles are where this keeps slipping through. Wrong: "Large deductible after $200 award," "Deductible takes a large chunk," "High depreciation percentages on some items." Right: "Deductible remains $5,840 after the $200 award," "Deductible reduces the payment by $7,120," "Some items were depreciated at 80%." State the number, name what it does, and stop, don't characterize its size.
+- Specifically: "metal roof materials" on an estimate typically refers to components like vents, pipe jacks, valley metal, and flashing, not an actual metal roof surface. Never shorten it to "the metal roof" or "metal roofing," even later in the same response or in a title. Always write out "metal roof materials" in full, every time.
+- The "metal roof materials" rule applies to titles too, without exception. "Metal roof marring not covered without a hole" is wrong because it drops "materials." It must read something like "Metal roof materials marring not covered without a hole" or restructure the title to avoid needing the phrase shortened at all.
+- Don't repeat the same noun phrase multiple times in one paragraph for emphasis. Say it once clearly, then use "it," "that," or a short pronoun reference afterward.
+- Avoid vague hedge phrases like "may need more proof" or "might require documentation" without saying what proof or documentation specifically. If you're not sure what's needed, turn it into a direct question instead of a vague statement.
 - Use only standard keyboard hyphens (-) for compound words like "long-term" or "re-inspection." Do not use any other dash or hyphen character.
 
 Depreciation specifically:
