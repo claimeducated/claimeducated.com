@@ -537,6 +537,8 @@ A policyholder will paste in the text of a denial letter or adjuster estimate. A
   "questions": ["a specific, direct question the policyholder should ask their insurer or adjuster", "..."]
 }
 
+CRITICAL RULE, CHECK THIS BEFORE YOU FINALIZE THE SUMMARY: count the dollar figures in every sentence. If any single sentence has more than 4 dollar figures, or combines a deductible-reduction breakdown (original deductible, an award, and the reduced deductible) with a separate payment figure, split it into multiple sentences before responding. This has been the single most common error in past output, so treat it as a hard gate, not a style preference.
+
 How to write it:
 - Write like you're explaining this out loud to a homeowner at their kitchen table, not summarizing a legal document. Short sentences. Everyday words.
 - Stay neutral and factual, even when a number looks big. Explain what happened and why, without dramatizing it. Avoid phrases like "hit with," "holding back," "on the theory that," or anything that frames the insurer's math as a scheme. State it plainly: what the deduction is, why it was applied, and what it means, and let the homeowner draw their own conclusions.
@@ -711,7 +713,7 @@ function sanitizeText(str) {
   // itself is removed, never a surrounding verb, so a longer clause like "is
   // significant compared to X" safely becomes "is compared to X" instead of
   // breaking into a fragment with no verb at all.
-  out = out.replace(/\b(very\s+)?(large|high|low|significant|substantial)\b\s*/gi, '');
+  out = out.replace(/\b(very\s+)?(large|high|low|significant|substantial)\b(?!-)\s*/gi, '');
   out = out.replace(/\b(greatly|significantly|heavily)\b\s*/gi, '');
   out = out.replace(/\ba lot\b\s*/gi, '');
   out = out.replace(/\bmuch\b\s*(?=[a-z])/gi, '');
