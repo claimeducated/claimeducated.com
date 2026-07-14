@@ -472,7 +472,12 @@ function redactPII(text) {
   // Phone numbers (various common formats)
   out = out.replace(/\(?\b\d{3}\)?[-.\s]\d{3}[-.\s]\d{4}\b/g, '[phone removed]');
   // Street addresses (number + street name + common suffix, optionally followed by city/state/zip)
-  out = out.replace(/\b\d{1,6}\s+[A-Za-z0-9\s]{2,30}\b(?:Street|St|Avenue|Ave|Road|Rd|Drive|Dr|Lane|Ln|Boulevard|Blvd|Court|Ct|Way|Circle|Cir|Place|Pl)\b\.?,?\s*(?:[A-Za-z\s]{2,25},?\s*)?(?:[A-Z]{2}\s*\d{5}(?:-\d{4})?)?/g, '[address removed]');
+  // Street addresses (number + street name + common suffix), matched separately from
+  // city/state/zip below, since combining them into one pattern caused the city name
+  // to greedily swallow the state abbreviation and leave the zip code stranded.
+  out = out.replace(/\b\d{1,6}\s+[A-Za-z0-9\s]{2,30}\b(?:Street|St|Avenue|Ave|Road|Rd|Drive|Dr|Lane|Ln|Boulevard|Blvd|Court|Ct|Way|Circle|Cir|Place|Pl)\b\.?,?/gi, '[address removed]');
+  // City, State ZIP (e.g. "Sherman TX 75090" or "Sherman, TX 75090"), matched independently
+  out = out.replace(/\b[A-Za-z][A-Za-z\s]{1,24},?\s+[A-Z]{2}\s*\d{5}(?:-\d{4})?\b/g, '[address removed]');
   return out;
 }
 
@@ -540,8 +545,8 @@ analyzeBtn.addEventListener('click', async () => {
     return;
   }
 
-  if (text.length > 40000) {
-    errorEl.textContent = 'That\'s a very long document. Try pasting just the summary, the stated reasoning, and the line items in question, and analyze again.';
+  if (text.length > 150000) {
+    errorEl.textContent = 'That\'s an extremely long document. Try pasting just the summary, the stated reasoning, and the line items in question, and analyze again.';
     errorEl.style.display = 'block';
     return;
   }
