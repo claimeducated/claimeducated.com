@@ -9,7 +9,28 @@
     try {
       const res = await fetch(url);
       if (!res.ok) throw new Error('Failed to load ' + url);
-      slot.outerHTML = await res.text();
+      const html = await res.text();
+
+      const temp = document.createElement('div');
+      temp.innerHTML = html;
+
+      // Scripts inserted via innerHTML never execute on their own (a browser
+      // security quirk), so replace each one with a freshly created <script>
+      // element, which the browser will actually fetch/run when inserted live.
+      temp.querySelectorAll('script').forEach((oldScript) => {
+        const newScript = document.createElement('script');
+        Array.from(oldScript.attributes).forEach((attr) => {
+          newScript.setAttribute(attr.name, attr.value);
+        });
+        newScript.textContent = oldScript.textContent;
+        oldScript.replaceWith(newScript);
+      });
+
+      const parent = slot.parentNode;
+      while (temp.firstChild) {
+        parent.insertBefore(temp.firstChild, slot);
+      }
+      parent.removeChild(slot);
     } catch (err) {
       console.error('Include failed:', err);
     }
