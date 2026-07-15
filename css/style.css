@@ -200,7 +200,8 @@ p { max-width: 68ch; }
 /* ── Navigation ────────────────────────────────────────────── */
 .site-header {
   position: fixed;
-  top: 0; left: 0; right: 0;
+  top: 10px;      /* was: top: 0 */
+  left: 0; right: 0;
   z-index: 1000;
   background: rgba(13,31,60,0.96);
   backdrop-filter: blur(20px);
@@ -224,27 +225,28 @@ p { max-width: 68ch; }
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 0.25rem;
+  gap: 0.5rem;              /* was 0.25rem */
 }
 
 .nav-links a {
-  font-size: 0.78rem;
+  font-size: 0.76rem;       /* was 0.78rem, small nudge to help everything fit on one line */
   font-weight: 500;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: rgba(255,255,255,0.75);
-  padding: 0.5rem 0.85rem;
+  padding: 0.5rem 0.7rem;   /* was 0.5rem 0.85rem */
   border-radius: 4px;
   transition: var(--transition);
   position: relative;
+  white-space: nowrap;      /* new: stops long labels from wrapping to two lines */
 }
 
 .nav-links a::after {
   content: '';
   position: absolute;
   bottom: 2px;
-  left: 0.85rem;
-  right: 0.85rem;
+  left: 0.7rem;    /* was 0.85rem */
+  right: 0.7rem;   /* was 0.85rem */
   height: 1px;
   background: var(--gold);
   transform: scaleX(0);
