@@ -14,10 +14,24 @@
       const temp = document.createElement('div');
       temp.innerHTML = html;
 
-      // Scripts inserted via innerHTML never execute on their own (a browser
-      // security quirk), so replace each one with a freshly created <script>
-      // element, which the browser will actually fetch/run when inserted live.
-      temp.querySelectorAll('script').forEach((oldScript) => {
+      // Collect references to the inert scripts BEFORE moving anything into
+      // the live document, so we still have handles on them afterward.
+      const inertScripts = Array.from(temp.querySelectorAll('script'));
+
+      // Move the fetched content into the live DOM first, while its scripts
+      // are still inert. Only then, once everything is actually connected,
+      // replace each inert script with a freshly created one, this ordering
+      // is what makes execution reliably trigger. Doing the replacement
+      // earlier, while still inside a detached container, was the actual bug:
+      // it worked for simple cases but silently failed for scripts nested
+      // several levels deep, which is exactly the Beehiiv embed's structure.
+      const parent = slot.parentNode;
+      while (temp.firstChild) {
+        parent.insertBefore(temp.firstChild, slot);
+      }
+      parent.removeChild(slot);
+
+      inertScripts.forEach((oldScript) => {
         const newScript = document.createElement('script');
         Array.from(oldScript.attributes).forEach((attr) => {
           newScript.setAttribute(attr.name, attr.value);
@@ -25,20 +39,10 @@
         newScript.textContent = oldScript.textContent;
         oldScript.replaceWith(newScript);
       });
-
-      const parent = slot.parentNode;
-      while (temp.firstChild) {
-        parent.insertBefore(temp.firstChild, slot);
-      }
-      parent.removeChild(slot);
     } catch (err) {
       console.error('Include failed:', err);
     }
   }
-
-  // TEMPORARY: artificial delay to test whether the beehiiv widget is failing
-  // due to a timing race on real page loads. Remove once diagnosed.
-  await new Promise((resolve) => setTimeout(resolve, 2000));
 
   await Promise.all([
     inject(headerSlot, 'header.html'),
