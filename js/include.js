@@ -36,6 +36,10 @@
     }
   }
 
+  // TEMPORARY: artificial delay to test whether the beehiiv widget is failing
+  // due to a timing race on real page loads. Remove once diagnosed.
+  await new Promise((resolve) => setTimeout(resolve, 2000));
+
   await Promise.all([
     inject(headerSlot, 'header.html'),
     inject(footerSlot, 'footer.html'),
