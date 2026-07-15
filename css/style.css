@@ -1299,3 +1299,105 @@ p { max-width: 68ch; }
   .page-hero    { padding: 7rem 0 3.5rem; }
   .btn-lg       { width: 100%; justify-content: center; }
 }
+
+/* ============================================================
+   Article Side Nav + Next Steps (added for cross-linking)
+   ============================================================ */
+.article-layout {
+  display: flex;
+  gap: 3rem;
+  align-items: flex-start;
+}
+.article-layout .article-content {
+  flex: 1 1 auto;
+  min-width: 0;
+  order: 1;
+}
+.article-side-nav {
+  flex: 0 0 260px;
+  order: 2;
+  position: sticky;
+  top: 6.5rem;
+  background: var(--cream);
+  border-radius: var(--radius-md);
+  padding: 1.75rem 1.5rem;
+  box-shadow: var(--shadow-sm);
+}
+.article-side-nav .side-nav-title {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1rem;
+}
+.article-side-nav ul { display: flex; flex-direction: column; gap: 1rem; }
+.article-side-nav a {
+  display: block;
+  font-size: 0.88rem;
+  color: var(--navy);
+  font-weight: 500;
+  line-height: 1.4;
+  transition: color var(--transition);
+}
+.article-side-nav a:hover { color: var(--gold); }
+.article-side-nav .side-nav-tag {
+  display: block;
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--slate);
+  font-weight: 400;
+  margin-top: 0.25rem;
+}
+
+.next-steps {
+  margin-top: 3rem;
+  padding-top: 2.5rem;
+  border-top: 1px solid var(--cream);
+}
+.next-steps .eyebrow { display: block; margin-bottom: 0.5rem; }
+.next-steps h3 { margin-bottom: 1.5rem; font-size: clamp(1.3rem, 2.5vw, 1.7rem); }
+.next-steps-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+.next-steps-card {
+  display: block;
+  background: var(--warm-white);
+  border: 1px solid var(--cream);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  transition: box-shadow var(--transition), transform var(--transition);
+}
+.next-steps-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+.next-steps-card .side-nav-tag {
+  display: block;
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 600;
+  margin-bottom: 0.6rem;
+}
+.next-steps-card h4 { font-size: 1rem; margin-bottom: 0.5rem; color: var(--navy); }
+.next-steps-card p { font-size: 0.85rem; color: var(--slate); margin: 0; max-width: none; }
+
+@media (max-width: 1024px) {
+  .article-layout { flex-direction: column; }
+  .article-side-nav {
+    order: -1;
+    position: static;
+    flex-basis: auto;
+    width: 100%;
+  }
+  .article-side-nav ul { flex-direction: row; flex-wrap: wrap; gap: 0.5rem 1.75rem; }
+  .article-side-nav li { flex: 1 1 220px; }
+}
+
+@media (max-width: 768px) {
+  .next-steps-grid { grid-template-columns: 1fr; }
+}
